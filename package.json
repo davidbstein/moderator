@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/davidbstein/moderator/issues"
   },
+  "devDependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "react-router-redux": "latest",
+    "redux": "latest"
+  },
   "homepage": "https://github.com/davidbstein/moderator#readme"
 }

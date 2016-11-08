@@ -12,7 +12,7 @@ Org
 
 Events
  + domain
- + e_id
+ + e_id
  + owner
  + lookup_id
  - moderators
