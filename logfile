@@ -1,0 +1,31 @@
+LOG:  database system was shut down at 2016-11-09 20:38:47 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "davidstein" does not exist
+FATAL:  database "davidstein" does not exist
+FATAL:  could not open relation mapping file "global/pg_filenode.map": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+LOG:  could not open file "postmaster.pid": No such file or directory
+LOG:  performing immediate shutdown because data directory lock file is invalid
+LOG:  received immediate shutdown request
+WARNING:  terminating connection because of crash of another server process
+DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+LOG:  could not open temporary statistics file "pg_stat/global.tmp": No such file or directory
+FATAL:  data directory "/Users/davidstein/repos/moderator/db" has group or world access
+DETAIL:  Permissions should be u=rwx (0700).
