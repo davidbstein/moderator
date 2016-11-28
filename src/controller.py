@@ -5,6 +5,8 @@ from flask import (
   Flask,
   request,
   Response,
+  send_from_directory,
+  render_template,
   session,
 )
 from flask.sessions import (
@@ -54,13 +56,26 @@ _GET = ("GET", "POST")
 
 
 #######
+# errors
+#######
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 404
+
+
+#######
 # global routes
 ######
 
 @app.route("/", methods=_GET)
 @web_helper(require_login=False)
 def home(body, user, **__):
-  return str(locals())
+  return send_from_directory("templates", "index.html")
 
 @app.route("/about", methods=_GET)
 @web_helper(require_login=False)
