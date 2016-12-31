@@ -5,6 +5,7 @@ __pycache__/
 db/
 .DS_Store
 node_modules/
+davidbstein/
 
 
 # C extensions
