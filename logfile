@@ -29,3 +29,64 @@ HINT:  In a moment you should be able to reconnect to the database and repeat yo
 LOG:  could not open temporary statistics file "pg_stat/global.tmp": No such file or directory
 FATAL:  data directory "/Users/davidstein/repos/moderator/db" has group or world access
 DETAIL:  Permissions should be u=rwx (0700).
+LOG:  database system was shut down at 2016-12-11 02:11:58 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  database "stein" does not exist
+FATAL:  database "stein" does not exist
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+ERROR:  database "stein" already exists
+STATEMENT:  CREATE DATABASE stein;
+FATAL:  database "db" does not exist
+ERROR:  table "users" does not exist
+STATEMENT:  DROP TABLE users CASCADE;
+ERROR:  table "orgs" does not exist
+STATEMENT:  DROP TABLE orgs CASCADE;
+ERROR:  table "events" does not exist
+STATEMENT:  DROP TABLE events CASCADE;
+ERROR:  table "questions" does not exist
+STATEMENT:  DROP TABLE questions CASCADE;
+ERROR:  table "comments" does not exist
+STATEMENT:  DROP TABLE comments CASCADE;
+ERROR:  table "question_votes" does not exist
+STATEMENT:  DROP TABLE question_votes CASCADE;
+ERROR:  table "comment_votes" does not exist
+STATEMENT:  DROP TABLE comment_votes CASCADE;
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+ERROR:  duplicate key value violates unique constraint "orgs_pkey"
+DETAIL:  Key (domain)=(appboy.com) already exists.
+STATEMENT:  INSERT INTO orgs (domain, moderators, title) VALUES ('appboy.com', '["david.stein@appboy.com"]', '"appboy.com"')
+ERROR:  duplicate key value violates unique constraint "orgs_pkey"
+DETAIL:  Key (domain)=(appboy.com) already exists.
+STATEMENT:  INSERT INTO orgs (domain, moderators, title) VALUES ('appboy.com', '["david.stein@appboy.com"]', '"appboy.com"')
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2228) running in data directory "/Users/stein/Dropbox/repo_folder/moderator/db"?
+ERROR:  syntax error at or near "/" at character 1
+STATEMENT:  /list
+	select * from comments
+	.tables
+	./tables
+	/tables
+	select * from questions
+	;
+ERROR:  relation "comments_votes" does not exist at character 15
+STATEMENT:  select * from comments_votes;

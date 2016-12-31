@@ -29,8 +29,9 @@ class Org:
     return Org.get(domain)
 
   @classmethod
-  def update(cls, domain, moderators=None, title=None, **__):
+  def update(cls, domain, user_email, moderators=None, title=None, **__):
     values = {}
+    Org.get(domain, user_email)
     if moderators:
       values["moderators"] = moderators
     if title:
@@ -41,4 +42,4 @@ class Org:
       ).values(
         **values)
     DB.ex(command)
-    return Org.get(domain)
+    return Org.get(domain, user_email)

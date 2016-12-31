@@ -47,7 +47,9 @@ CREATE TABLE IF NOT EXISTS comments (
  q_id int,
  owner_email varchar(127),
  content JSON,
- score int
+ score int,
+ flagged boolean,
+ flag_note JSON,
 );
 CREATE INDEX IF NOT EXISTS comment_owner_emails ON comments (q_id, id);
 CREATE INDEX IF NOT EXISTS comment_owner_emails ON comments (owner_email);

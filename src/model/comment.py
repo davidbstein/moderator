@@ -40,7 +40,13 @@ class Comment:
       score=0,
     ))
     DB.ex(command)
-    return get_question_and_info(question_id, user_email)
+    user = User.get(user_email)
+    question = Question.get(question_id, user_email)
+    comments = Comment.get_all_for_question(question, override_auth=True)
+    return {
+      "question": question,
+      "comments": comments,
+    }
 
   @classmethod
   def _update_vote(cls, question_id, comment_id, user_email, score):
@@ -48,10 +54,9 @@ class Comment:
       (DB.comment_votes.columns.q_id == question_id) &
       (DB.comment_votes.columns.c_id == comment_id)
     )
-    vote = r2d(DB.ex(DB.comment_votes.select(vote_clause)).fetchone())
-    prev_score = vote.get("score", 0)
+    vote = r2d(DB.ex(DB.comment_votes.select(vote_clause)).fetchone()) or {}
     if vote:
-      prev_score = 0
+      prev_score = vote.get("score", 0)
       vote_command = DB.comment_votes.update(
         ).where(
           vote_clause
@@ -59,7 +64,7 @@ class Comment:
           score=score
         )
     else:
-      prev_score = vote.get("score", 0)
+      prev_score = 0
       vote_command = DB.comment_votes.insert(dict(
         c_id=comment_id,
         q_id=question_id,

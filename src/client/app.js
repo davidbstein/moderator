@@ -1,9 +1,13 @@
+import React from "react"
+import ReactDOM from 'react-dom'
+
 class Moderator extends React.Component {
   render() {
     return <div>
-      App has loaded successfully.
+      this is the page
     </div>
   }
 }
 
-ReactDOM.render(<Moderator/>, document.getElementById("target"))
+const target = document.getElementById("target")
+ReactDOM.render(<Moderator/>, target)

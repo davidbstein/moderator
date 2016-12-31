@@ -16,11 +16,19 @@
     "url": "https://github.com/davidbstein/moderator/issues"
   },
   "devDependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
     "react-redux": "latest",
     "react-router-redux": "latest",
-    "redux": "latest"
+    "redux": "latest",
+    "webpack": "^1.14.0"
   },
-  "homepage": "https://github.com/davidbstein/moderator#readme"
+  "homepage": "https://github.com/davidbstein/moderator#readme",
+  "dependencies": {
+  }
 }

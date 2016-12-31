@@ -104,7 +104,7 @@ def question_form(**__):
 @app.route(_ORG_PREFIX, methods=_GET)
 @web_helper()
 def show_org(org=None, **__):
-  raise Exception("")
+  raise Exception("there is only one ORG")
   return org
 
 @app.route(_EVENT_PREFIX, methods=_GET)
