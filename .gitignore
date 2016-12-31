@@ -5,8 +5,7 @@ __pycache__/
 db/
 .DS_Store
 node_modules/
-davidbstein/
-
+davidstein/
 
 # C extensions
 *.so
