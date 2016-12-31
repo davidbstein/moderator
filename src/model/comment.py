@@ -42,6 +42,7 @@ class Comment:
     DB.ex(command)
     user = User.get(user_email)
     question = Question.get(question_id, user_email)
+    ## increment comment count
     comments = Comment.get_all_for_question(question, override_auth=True)
     return {
       "question": question,

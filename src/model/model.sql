@@ -1,5 +1,5 @@
 
-DROP TABLE users CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
  u_email varchar(127),
  domain varchar(127),
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 CREATE INDEX IF NOT EXISTS user_domains ON users (domain);
 
-DROP TABLE orgs CASCADE;
+DROP TABLE IF EXISTS orgs CASCADE;
 CREATE TABLE IF NOT EXISTS orgs (
  domain varchar(128),
  moderators JSON,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS orgs (
  PRIMARY KEY (domain)
 );
 
-DROP TABLE events CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
 CREATE TABLE IF NOT EXISTS events (
  id BIGSERIAL NOT NULL PRIMARY KEY,
  domain varchar(127),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE INDEX IF NOT EXISTS event_lookup_id on events (lookup_id);
 CREATE INDEX IF NOT EXISTS event_domain on events (domain);
 
-DROP TABLE questions CASCADE;
+DROP TABLE IF EXISTS questions CASCADE;
 CREATE TABLE IF NOT EXISTS questions (
  id BIGSERIAL NOT NULL PRIMARY KEY,
  e_id int,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS questions (
 );
 CREATE INDEX IF NOT EXISTS questions_event_idx ON questions (e_id, id);
 
-DROP TABLE comments CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
 CREATE TABLE IF NOT EXISTS comments (
  id BIGSERIAL NOT NULL PRIMARY KEY,
  q_id int,
@@ -49,12 +49,12 @@ CREATE TABLE IF NOT EXISTS comments (
  content JSON,
  score int,
  flagged boolean,
- flag_note JSON,
+ flag_note JSON
 );
 CREATE INDEX IF NOT EXISTS comment_owner_emails ON comments (q_id, id);
 CREATE INDEX IF NOT EXISTS comment_owner_emails ON comments (owner_email);
 
-DROP TABLE question_votes CASCADE;
+DROP TABLE IF EXISTS question_votes CASCADE;
 CREATE TABLE IF NOT EXISTS question_votes (
  q_id int NOT NULL,
  user_email varchar(127) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS question_votes (
  PRIMARY KEY (q_id, user_email)
 );
 
-DROP TABLE comment_votes CASCADE;
+DROP TABLE IF EXISTS comment_votes CASCADE;
 CREATE TABLE IF NOT EXISTS comment_votes (
  c_id int NOT NULL,
  q_id int NOT NULL,

@@ -26,7 +26,7 @@ class Org:
       "title": domain,
     })
     DB.ex(command)
-    return Org.get(domain)
+    return Org.get(domain, user_email)
 
   @classmethod
   def update(cls, domain, user_email, moderators=None, title=None, **__):

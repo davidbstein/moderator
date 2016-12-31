@@ -6,6 +6,9 @@ db/
 .DS_Store
 node_modules/
 davidstein/
+.sass-cache/
+src/static/bundle*
+logfile
 
 # C extensions
 *.so
