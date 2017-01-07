@@ -20,9 +20,9 @@ const test_state = {
               "flag_note": [],
             "e_id": 1,
             "flagged": false,
-            "content": "this is my question",
+            "content": "this is my second one",
             "comment_count": 0,
-            "score": 2,
+            "score": 230,
             "id": 2
           },
           "comments": [],
@@ -32,9 +32,9 @@ const test_state = {
             "flag_note": [],
             "e_id": 1,
             "id": 1,
-            "content": "this is my question",
+            "content": "this is my first question",
             "comment_count": 0,
-            "score": 2,
+            "score": -80,
             "flagged": false
           },
           "comments": [

@@ -5,9 +5,10 @@ import {Provider} from 'react-redux'
 
 import Moderator from './moderator'
 import reducer from './client-model/reducer'
+import viewReducer from './client-model/viewReducer'
 import API from './client-model/API'
 
-const render = () => {
+const render = (store) => {
   ReactDOM.render(
     <Provider store={store}>
       <div>
@@ -23,8 +24,11 @@ const store = (
     window.devToolsExtension && window._DEV_MODE ?
     window.devToolsExtension()(createStore) :
     createStore
-  )(reducer);
+  )(combineReducers({
+    state: reducer,
+    viewState: viewReducer,
+  }));
 
 const api = new API(store)
 
-render();
+render(store);

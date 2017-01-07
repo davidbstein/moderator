@@ -1,5 +1,170 @@
 @import "reset";
 
-body {
+$border-grey: #ccc;
+$question-vote-width: 72px;
+$comment-vote-width: 32px;
+$item-shadow: 1px 2px 1px 0px $border-grey;
+$item-background: #fff;
+$item-focus-color: #333;
+$item-detail-color: #888;
 
+$button-background: $item-background;
+$button-hover-background: #eee;
+$button-active-background: #eee;
+
+$background: #f0f0ff;
+
+$upvote-color: #cec;
+$downvote-color: #fcc;
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+@mixin transition-delay($transition-delay...) {
+  -moz-transition-delay: $transition-delay;
+  -o-transition-delay: $transition-delay;
+  -webkit-transition-delay: $transition-delay;
+  transition-delay: $transition-delay;
+}
+
+body {
+  font-family: sans-serif;
+  background: $background;
+  color: $item-focus-color;
+}
+
+.event-question-list {
+  margin: auto;
+  width: 750px;
+}
+
+button {
+  border: 1px solid $border-grey;
+  background: $button-background;
+  font-size: 12px;
+  &:hover {
+    background: $button-hover-background;
+  }
+  &:active {
+    background: $button-active-background;
+    border: 1px solid $border-grey;
+  }
+}
+
+.upvote-arrow {
+  border-bottom: 16px solid $upvote-color;
+  border-left: 8px solid rgba(0,0,0,0);
+  border-right: 8px solid rgba(0,0,0,0);
+  width:0px;
+  height: 0px;
+}
+.downvote-arrow {
+  border-top: 16px solid $downvote-color;
+  border-left: 8px solid rgba(0,0,0,0);
+  border-right: 8px solid rgba(0,0,0,0);
+  width: 0px;
+  height: 0px;
+}
+.upvote:hover .upvote-arrow, .downvote:hover .downvote-arrow {
+  border-top-color: red;
+  border-bottom-color: green;
+}
+.vote-score {
+  text-align: center;
+  font-family: monospace;
+  line-height: 16px;
+}
+
+
+.question {
+  margin: 16px;
+  margin-top: 32px;
+  .question-container {
+    background: $item-background;
+    border: 1px solid $border-grey;
+    box-shadow: $item-shadow;
+    display: flex;
+    .question-content {
+      margin: 16px;
+      line-height: 16px;
+    }
+    .vote {
+      margin-left: 16px;
+      margin-right: 16px;
+      height: $question-vote-width;
+      .upvote, .downvote {
+        height: #{(($question-vote-width / 2) - 16)};
+      }
+    }
+  }
+  .question-comments {
+    background: $item-background;
+    border: 1px solid $border-grey;
+    border-bottom: 1px solid $border-grey;
+    box-shadow: $item-shadow;
+    margin-left: 16px;
+    margin-right: 16px;
+    .slider-toggle {
+      @include transition-delay(3s);
+      @include transition(all 100ms);
+      text-align: center;
+      line-height: 16px;
+      margin: 4px;
+      color: #88f;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        margin-top: 4px;
+      }
+    }
+    .slider {
+      @include transition(all 250ms);
+    }
+    .slider-false {
+      // overloads a comuter value for animations
+      max-height: 0px !important;
+      overflow: hidden;
+    }
+    .slider-true {
+      overflow: scroll;
+    }
+    .comment-input {
+      margin: 8px;
+      padding-left: $comment-vote-width;
+      color: $item-detail-color;
+      textarea {
+        width: calc(100% - 16px);
+        height: 72px;
+        border: 1px solid $border-grey;
+      }
+      .buttons {
+        margin: 16px;
+        button {
+          float: right;
+        }
+      }
+    }
+    .comment {
+      display: flex;
+      margin-top: 8px;
+      .comment-content {
+        margin: 16px;
+        line-height: 16px;
+      }
+      .comment-author {
+        color: $item-detail-color;
+        margin-bottom: 4px;
+      }
+      .vote {
+        margin-left: 16px;
+        margin-right: 16px;
+        .upvote, .downvote {
+          height: #{(($question-vote-width / 2) - 16)};
+        }
+      }
+    }
+  }
 }
