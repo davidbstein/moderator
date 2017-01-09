@@ -3,19 +3,27 @@
 $border-grey: #ccc;
 $question-vote-width: 72px;
 $comment-vote-width: 32px;
-$item-shadow: 1px 2px 1px 0px $border-grey;
+$shadow-grey: #999;
+$item-shadow: 1px 2px 5px 0px $shadow-grey;
 $item-background: #fff;
 $item-focus-color: #333;
 $item-detail-color: #888;
+
+$card-border: 0px solid $border-grey;
+$element-border: 1px solid #ccc;
 
 $button-background: $item-background;
 $button-hover-background: #eee;
 $button-active-background: #eee;
 
-$background: #f0f0ff;
+$background: #c6ccd3;
 
 $upvote-color: #cec;
 $downvote-color: #fcc;
+
+$zidx-comment: 1;
+$zidx-container: 2;
+$zidx-header: 100;
 
 @mixin transition($transition...) {
   -moz-transition: $transition;
@@ -33,6 +41,7 @@ $downvote-color: #fcc;
 body {
   font-family: sans-serif;
   background: $background;
+  background-image: url('/static/dark_embroidery.png');
   color: $item-focus-color;
 }
 
@@ -42,7 +51,7 @@ body {
 }
 
 button {
-  border: 1px solid $border-grey;
+  border: $element-border;
   background: $button-background;
   font-size: 12px;
   &:hover {
@@ -50,11 +59,12 @@ button {
   }
   &:active {
     background: $button-active-background;
-    border: 1px solid $border-grey;
+    border: $card-border;
   }
 }
 
 .upvote-arrow {
+  margin-top: 8px;
   border-bottom: 16px solid $upvote-color;
   border-left: 8px solid rgba(0,0,0,0);
   border-right: 8px solid rgba(0,0,0,0);
@@ -79,14 +89,48 @@ button {
 }
 
 
+.page-header {
+  background: $item-background;
+  box-shadow: $item-shadow;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $zidx-header;
+  width: 100%;
+  .page-title {
+    font-size: 32px;
+  }
+}
+
+.underheader {
+  height: 64px;
+}
+
+.event {
+  .event-title {
+    font-size: 32px;
+    font-weight: 100;
+  }
+  .unique-link-container{
+    width: 750px;
+    margin: 32px auto;
+    text-align: center;
+  }
+}
+
 .question {
   margin: 16px;
   margin-top: 32px;
+  div {
+    position: relative;
+  }
   .question-container {
     background: $item-background;
-    border: 1px solid $border-grey;
+    border: $card-border;
     box-shadow: $item-shadow;
     display: flex;
+    z-index: $zidx-container;
     .question-content {
       margin: 16px;
       line-height: 16px;
@@ -101,8 +145,9 @@ button {
     }
   }
   .question-comments {
+    z-index: $zidx-comment;
     background: $item-background;
-    border: 1px solid $border-grey;
+    border: $card-border;
     border-bottom: 1px solid $border-grey;
     box-shadow: $item-shadow;
     margin-left: 16px;
@@ -110,14 +155,15 @@ button {
     .slider-toggle {
       @include transition-delay(3s);
       @include transition(all 100ms);
+      border-top: 1px solid #eee;
       text-align: center;
       line-height: 16px;
-      margin: 4px;
+      padding-top: 8px;
+      margin: 8px;
       color: #88f;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
-        margin-top: 4px;
       }
     }
     .slider {
@@ -138,7 +184,8 @@ button {
       textarea {
         width: calc(100% - 16px);
         height: 72px;
-        border: 1px solid $border-grey;
+        border: $element-border;
+        font-size: 16px;
       }
       .buttons {
         margin: 16px;

@@ -7,7 +7,7 @@ export default class QuestionList extends React.Component {
     return <div>
       {
         Object.values(this.props.questions).sort((question) => {
-          return "sort-key";
+          return -question.question.score;
         }).map((question, _k) => {
           return <Question question={question} key={_k}/>
         })

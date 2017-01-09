@@ -10,7 +10,13 @@ export default connect(
       const e = this.props.state.events[this.props.viewState.state.event_id];
       return <div className="event">
         <div className="page-header">
-          <div> Question list </div>
+          <div className="event-title page-title">{e.event.title}</div>
+        </div>
+        <div className="underheader" />
+        <div className="unique-link-container">
+          Add new questions using {' '}
+          <a href={`/post_question/${e.event.lookup_id}`}>this link</a>.
+          You do not need to be signed in to use this link.
         </div>
         <div className="event-question-list">
           <QuestionList questions={e.questions} />
