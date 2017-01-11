@@ -3,10 +3,16 @@ import {connect} from 'react-redux'
 import Vote from './vote'
 
 export default class Comment extends React.Component {
+  upvote() {
+    console.log("upvote comment")
+  }
+  downvote () {
+    console.log("downvote comment")
+  }
   render() {
     const c = this.props.comment;
     return <div className="comment">
-      <Vote upvote={1} downvote={1} score={c.score}/>
+      <Vote upvote={this.upvote} downvote={this.downvote} score={c.score}/>
       <div className="comment-content">
         <div className="comment-author">
           {c.owner_email}

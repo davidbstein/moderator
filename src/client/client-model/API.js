@@ -30,7 +30,7 @@ export default class {
   constructor(store){
     this.store = store;
   }
-  new_comment_vote(params){
+  new_comment_vote(question_id, comment_id, vote){
     JSONpost(
       "api/new_comment_vote",
       params,
@@ -38,7 +38,7 @@ export default class {
         console.log("resp to new_comment_vote:", data);
       })
   }
-  new_question_vote(params){
+  new_question_vote(question_id, vote){
     JSONpost(
       "api/new_question_vote",
       params,
@@ -46,7 +46,7 @@ export default class {
         console.log("resp to new_question_vote:", data);
       })
   }
-  new_comment(params){
+  new_comment(question_id, content){
     JSONpost(
       "api/new_comment",
       params,
@@ -54,7 +54,7 @@ export default class {
         console.log("resp to new_comment:", data);
       })
   }
-  new_question(params){
+  new_question(event_id, content){
     JSONpost(
       "api/new_question",
       params,
@@ -62,7 +62,7 @@ export default class {
         console.log("resp to new_question:", data);
       })
   }
-  new_event(params){
+  new_event(org_id, params){
     JSONpost(
       "api/new_event",
       params,

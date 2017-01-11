@@ -10,7 +10,10 @@ export default connect(
       const e = this.props.state.events[this.props.viewState.state.event_id];
       return <div className="event">
         <div className="page-header">
-          <div className="event-title page-title">{e.event.title}</div>
+          <div className="page-header-container">
+            <div className="event-title page-title">{e.event.title}</div>
+            <div className="logout-button"><a href="/logout">logout</a></div>
+          </div>
         </div>
         <div className="underheader" />
         <div className="unique-link-container">

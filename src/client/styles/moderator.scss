@@ -1,29 +1,6 @@
 @import "reset";
-
-$border-grey: #ccc;
-$question-vote-width: 72px;
-$comment-vote-width: 32px;
-$shadow-grey: #999;
-$item-shadow: 1px 2px 5px 0px $shadow-grey;
-$item-background: #fff;
-$item-focus-color: #333;
-$item-detail-color: #888;
-
-$card-border: 0px solid $border-grey;
-$element-border: 1px solid #ccc;
-
-$button-background: $item-background;
-$button-hover-background: #eee;
-$button-active-background: #eee;
-
-$background: #c6ccd3;
-
-$upvote-color: #cec;
-$downvote-color: #fcc;
-
-$zidx-comment: 1;
-$zidx-container: 2;
-$zidx-header: 100;
+@import "constants";
+@import "login-fields";
 
 @mixin transition($transition...) {
   -moz-transition: $transition;
@@ -41,25 +18,25 @@ $zidx-header: 100;
 body {
   font-family: sans-serif;
   background: $background;
-  background-image: url('/static/dark_embroidery.png');
+  background-image: url('/static/bg.png');
   color: $item-focus-color;
 }
 
 .event-question-list {
   margin: auto;
-  width: 750px;
+  max-width: $question-width;
 }
 
 button {
   border: $element-border;
   background: $button-background;
   font-size: 12px;
+  outline: 0;
   &:hover {
     background: $button-hover-background;
   }
   &:active {
     background: $button-active-background;
-    border: $card-border;
   }
 }
 
@@ -92,12 +69,17 @@ button {
 .page-header {
   background: $item-background;
   box-shadow: $item-shadow;
-  padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: $zidx-header;
   width: 100%;
+  .page-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px;
+  }
   .page-title {
     font-size: 32px;
   }
@@ -113,7 +95,7 @@ button {
     font-weight: 100;
   }
   .unique-link-container{
-    width: 750px;
+    max-width: $question-width;
     margin: 32px auto;
     text-align: center;
   }

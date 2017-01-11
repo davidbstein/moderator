@@ -19,7 +19,7 @@ export default class Question extends React.Component {
         <div className="question-content">{q.content}</div>
       </div>
       <div className="question-comments">
-        <CommentList comments={comments} />
+        <CommentList comments={comments} question_id={q.id} />
       </div>
     </div>
   }
