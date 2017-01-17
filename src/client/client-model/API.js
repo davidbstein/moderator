@@ -16,12 +16,15 @@ function JSONget(uri, callback)
   xmlHttp.send(null);
 }
 
-function JSONpost(uri, postData, callback)
+function JSONpost(uri, postData, callbacks=[])
 {
   const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = () => {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-      callback(JSON.parse(xmlHttp.responseText));
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+      const response = JSON.parse(xmlHttp.responseText);
+      for (callback in Object.values(callbacks))
+        callback(response);
+    }
     else if (xmlHttp.readyState < 4){
       // this is fine.
     }
@@ -37,18 +40,19 @@ class Caller {
   constructor(dispatch){
     this.dispatch=dispatch;
   }
-  process_response(response_action_type, data){
+  process_response(response_action_type, callback, data){
     this.dispatch({
       type: response_action_type,
       data: data,
     })
+    if (callback) callback(data);
   }
-  post(uri, data, submit_action_type, response_action_type) {
+  post(uri, data, submit_action_type, response_action_type, callback) {
     this.dispatch({type: submit_action_type, data: data})
     JSONpost(
       uri,
       data,
-      this.process_response.bind(this, response_action_type)
+      this.process_response.bind(this, response_action_type, callback)
     )
   }
 }

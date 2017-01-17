@@ -21,7 +21,7 @@ export default connect(
       this.setState({slider: !this.state.slider});
     }
     render() {
-      let comment_divs = <div className="comment-loader"></div>
+      let comment_divs = <div className="comment-loader loader"></div>
       let comment_count = "loading";
       if (this.props.comments != null){
         const comments = Object.values(this.props.comments);

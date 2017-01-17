@@ -100,6 +100,12 @@ button {
   }
 }
 
+.loader {
+  // loaders must have width, height, color, and margin
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
 .upvote-arrow {
   margin-top: 8px;
   border-bottom: 16px solid $upvote-color;
@@ -150,6 +156,12 @@ button {
   height: 64px;
 }
 
+.event-loader {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(.7, .2, .2, .1);
+  margin: 64px auto;
+}
 .event {
   .event-title {
     font-size: 32px;
@@ -243,10 +255,7 @@ button {
       width: 40px;
       height: 40px;
       background-color: rgba(168, 182, 199, 0.31);
-
       margin: 15px auto;
-      -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-      animation: sk-rotateplane 1.2s infinite ease-in-out;
     }
     .comment {
       display: flex;

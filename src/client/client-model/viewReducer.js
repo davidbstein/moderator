@@ -14,6 +14,8 @@ const initial_state = {
 
 export default function(state=test_state, action) {
   switch (action.type) {
+    case "@@INIT":
+      return state
     case actionTypes.PLACEHOLDER:
       return action.message
     default:

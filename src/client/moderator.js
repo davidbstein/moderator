@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Event from './client-views/event'
+import Org from './client-views/event'
 
 export default connect(
   storeState => storeState

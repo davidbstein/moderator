@@ -14,6 +14,9 @@ export default connect(
     }
     render() {
       const e = this.props.state.events[this.props.event_id];
+      if (!e.event){
+        return <div className="loader event-loader" />
+      }
       return <div className="event">
         <div className="page-header">
           <div className="page-header-container">

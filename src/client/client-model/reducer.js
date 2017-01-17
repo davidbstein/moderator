@@ -1,30 +1,11 @@
 import actionTypes from "../actionTypes"
 
-const test_state = {
-  events: {
-    1: {
-      "event": {
-        "domain": "appboy.com",
-        "description": "static placholder",
-        "title": "static placholder",
-        "owner_email": "david.stein@appboy.com",
-        "moderators": [
-          "david.stein@appboy.com"
-        ],
-        "lookup_id": "626094d76b8726212ae04111f9220f2",
-        "id": 1
-      },
-      "questions": {}
-    }
-  }
-}
-
 const initial_state = {
   org: {},
   events: {},
 }
 
-export default function(state=test_state, action) {
+export default function(state=initial_state, action) {
   const next_state = {...state};
   switch (action.type) {
     case actionTypes.EVENT.REQUEST:
