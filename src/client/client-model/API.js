@@ -1,10 +1,14 @@
+import ActionTypes from "../actionTypes"
 
+// currently not used.
 function JSONget(uri, callback)
 {
-  var xmlHttp = new XMLHttpRequest();
+  const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = () => {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
       callback(JSON.parse(xmlHttp.responseText));
+    else if (xmlHttp.readyState < 4)
+      console.log(xmlHttp.readyState, xmlHttp.status)
     else
       throw(xmlHttp)
   }
@@ -14,76 +18,99 @@ function JSONget(uri, callback)
 
 function JSONpost(uri, postData, callback)
 {
-  var xmlHttp = new XMLHttpRequest();
+  const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = () => {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
       callback(JSON.parse(xmlHttp.responseText));
+    else if (xmlHttp.readyState < 4){
+      // this is fine.
+    }
     else
       throw(xmlHttp)
   }
   xmlHttp.open("POST", uri, true);
-  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xmlHttp.send(JSON.stringify(postData));
 }
 
+class Caller {
+  constructor(dispatch){
+    this.dispatch=dispatch;
+  }
+  process_response(response_action_type, data){
+    this.dispatch({
+      type: response_action_type,
+      data: data,
+    })
+  }
+  post(uri, data, submit_action_type, response_action_type) {
+    this.dispatch({type: submit_action_type, data: data})
+    JSONpost(
+      uri,
+      data,
+      this.process_response.bind(this, response_action_type)
+    )
+  }
+}
+
 export default class {
-  constructor(store){
-    this.store = store;
+  constructor(dispatch){
+    this.caller = new Caller(dispatch);
   }
   new_comment_vote(question_id, comment_id, vote){
-    JSONpost(
+    this.caller.post(
       "api/new_comment_vote",
       params,
-      (data) => {
-        console.log("resp to new_comment_vote:", data);
-      })
+      ActionTypes.COMMENT.VOTE,
+      ActionTypes.COMMENT.VOTE_ACK,
+    );
   }
   new_question_vote(question_id, vote){
-    JSONpost(
+    this.caller.post(
       "api/new_question_vote",
       params,
-      (data) => {
-        console.log("resp to new_question_vote:", data);
-      })
+      ActionTypes.QUESTION.VOTE,
+      ActionTypes.QUESTION.VOTE_ACK,
+    );
   }
   new_comment(question_id, content){
-    JSONpost(
+    this.caller.post(
       "api/new_comment",
       params,
-      (data) => {
-        console.log("resp to new_comment:", data);
-      })
+      ActionTypes.COMMENT.SUBMIT,
+      ActionTypes.COMMENT.SUBMIT_ACK,
+    );
   }
   new_question(event_id, content){
-    JSONpost(
+    this.caller.post(
       "api/new_question",
       params,
-      (data) => {
-        console.log("resp to new_question:", data);
-      })
+      ActionTypes.QUESTION.SUBMIT,
+      ActionTypes.QUESTION.SUBMIT_ACK,
+    );
   }
   new_event(org_id, params){
-    JSONpost(
+    this.caller.post(
       "api/new_event",
       params,
-      (data) => {
-        console.log("resp to new_event:", data);
-      })
+      ActionTypes.EVENT.SUBMIT,
+      ActionTypes.EVENT.SUBMIT_ACK,
+    );
   }
   get_question(question_id){
-    JSONpost(
+    this.caller.post(
       "api/get_question",
-      {},
-      (data) => {
-        console.log("resp to get_question: ", data)
-      })
+      {question_id},
+      ActionTypes.QUESTION.REQUEST,
+      ActionTypes.QUESTION.RECIEVE,
+    );
   }
   get_event(event_id){
-    JSONpost(
+    this.caller.post(
       "api/get_event",
-      {},
-      (data) => {
-        console.log("resp to get_event: ", data)
-      })
+      {event_id},
+      ActionTypes.EVENT.REQUEST,
+      ActionTypes.EVENT.RECIEVE,
+    );
   }
 }

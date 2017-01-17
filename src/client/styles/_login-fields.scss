@@ -4,8 +4,19 @@
   justify-content: center;
   height: 100vh;
   align-items: center;
+  .login-text {
+    max-width: 400px;
+    text-align: center;
+    line-height: 24px;
+    margin: 32px;
+    font-size: 18px;
+  }
   .button-container {
     max-height: 46px;
+    a {
+      display: block;
+      text-align: center;
+    }
     .login-button {
       width: 191px;
     }

@@ -14,6 +14,10 @@ from flask.sessions import (
   NullSession,
   SecureCookieSession,
 )
+from model import (
+  get_all_event_info,
+  get_all_question_info,
+)
 from oauth2client.client import OAuth2WebServerFlow
 import json
 import model
@@ -53,34 +57,31 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
   profile and 'body' is the post body (POSTs) or query params (GETs)
   """
   def outer(fn):
-    def inner(*args, **kwargs):
-      print session.get("user_info", {}).get("email"), "called: ", fn.__name__, args, kwargs, session.get("authed")
-      try:
-        parsed_url = urlparse.urlparse(request.url)
-        if require_auth and not session.get('authed', False):
-          return redirect("/login")
-        if kwargs.get('user'):
-          raise Exception("cannot name a url chunck 'user'")
-        if kwargs.get('body'):
-          raise Exception("cannot name a url chunck 'body'")
-        kwargs['user'] = {}
-        if request.method == "POST":
-          kwargs['body'] = json.loads(request.data)
-        if request.method == "GET":
-          kwargs['body'] = request.args
-        to_return = fn(*args, **kwargs)
-        if json_encode_resp:
-          return Response(
-            response=json.dumps(to_return),
-            status=200,
-            mimetype="application/json",
-          )
-        else:
-          traceback.print_exc()
-          return to_return
-      except Exception, e:
-
-        raise e
+    def inner(*_, **kwargs):
+      print session.get("user_info", {}).get("email"), "called: ", fn.__name__, kwargs, session.get("authed")
+      parsed_url = urlparse.urlparse(request.url)
+      if require_auth and not session.get('authed', False):
+        session['path'] = request.path
+        return redirect("/login")
+      if kwargs.get('user'):
+        raise Exception("cannot name a url chunck 'user'")
+      if kwargs.get('body'):
+        raise Exception("cannot name a url chunck 'body'")
+      kwargs['user'] = session.get("user_info")
+      if request.method == "POST":
+        kwargs['body'] = json.loads(request.data)
+      if request.method == "GET":
+        kwargs['body'] = request.args
+      to_return = fn(**kwargs)
+      if json_encode_resp:
+        return Response(
+          response=json.dumps(to_return),
+          status=200,
+          mimetype="application/json",
+        )
+      else:
+        traceback.print_exc()
+        return to_return
     inner.__name__ = fn.__name__
     return inner
   return outer
@@ -116,7 +117,7 @@ def home(body, user, **__):
 @app.route("/about", methods=_GET)
 @web_helper(require_auth=False)
 def about(body, user, **__):
-  return "about"
+  return render_template("about.html", user_info=session)
 
 @app.route("/login", methods=_GET)
 @web_helper(require_auth=False)
@@ -132,7 +133,11 @@ def auth(body, **__):
   if user_info:
     session['authed'] = True
     session['user_info'] = user_info
-    return redirect("/")
+    path = (session.get("path") or "/")
+    if "/log" in path:
+      path = "/"
+    session['path'] = None
+    return redirect(path)
   else:
     return "login failed?"
 
@@ -145,8 +150,8 @@ def logout(body, **__):
 
 @app.route("/post_question/<string:event_id>", methods=_GET)
 @web_helper(require_auth=False)
-def question_form(**__):
-  return "post a question"
+def question_form(event_id, **__):
+  return render_template("post_question.html", event_id=event_id)
 
 #######
 # local routes
@@ -155,7 +160,7 @@ def question_form(**__):
 @app.route(_ORG_PREFIX, methods=_GET)
 @web_helper()
 def show_org(org=None, **__):
-  raise Exception("there is only one ORG")
+  assert org in ('appboy.com', 'gmail.com'), "unknown org"
   return org
 
 @app.route(_EVENT_PREFIX, methods=_GET)
@@ -199,22 +204,22 @@ def post_comment(**kwargs):
 
 @app.route("/api/new_question_vote", methods=_POST)
 @web_helper(json_encode_resp=True)
-def post_question_vote():
+def post_question_vote(user=None, body=None):
   return {"foo": "bar"}
 
 @app.route("/api/new_comment_vote", methods=_POST)
 @web_helper(json_encode_resp=True)
-def post_comment_vote():
+def post_comment_vote(user=None, body=None):
   return {"foo": "bar"}
 
 @app.route("/api/get_event", methods=_POST)
 @web_helper(json_encode_resp=True)
-def get_event():
-  return {"foo": "bar"}
+def get_event(user=None, body=None):
+  return get_all_event_info(body['event_id'], user['email'])
 
 @app.route("/api/get_question", methods=_POST)
 @web_helper(json_encode_resp=True)
-def get_question():
-  return {"foo": "bar"}
+def get_question(user=None, body=None):
+  return get_all_question_info(body['question_id'], user['email'])
 
 app.run()

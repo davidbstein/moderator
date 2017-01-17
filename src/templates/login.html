@@ -3,19 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title> Appboy Moderator </title>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
     <link href="/static/bundle.css" rel="stylesheet"></link>
     <script> window._DEV_MODE = true </script>
   </head>
   <body>
     <div class="login-container">
-      <div class="button-container">
-        <a href="{{ login_url }}">
-          <img
-            class="login-button"
-            src="/static/goog/1x/btn_google_signin_light_normal_web.png"
-            srcset="/static/goog/2x/btn_google_signin_light_normal_web@2x.png 382w"
-          />
-        </a>
+      <div>
+        <div class="login-text">
+          You must either be logged in or have an event
+          link. There is more information about this Q&A
+          moderator and details on privacy and anonymity
+          while using the app <a href="/about">here</a>.
+        </div>
+        <div class="button-container">
+          <a href="{{ login_url }}">
+            <img
+              class="login-button"
+              src="/static/goog/1x/btn_google_signin_light_normal_web.png"
+              srcset="/static/goog/2x/btn_google_signin_light_normal_web@2x.png 382w"
+            />
+          </a>
+        </div>
       </div>
     </div>
   </body>

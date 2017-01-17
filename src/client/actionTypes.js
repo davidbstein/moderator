@@ -13,11 +13,13 @@ const actions = {
   EVENT: [
     "SUBMIT",
     "SUBMIT_ACK",
-    "RECIEVE_LIST",
+    "REQUEST",
+    "RECIEVE",
   ],
   QUESTION: [
     "SUBMIT",
     "SUBMIT_ACK",
+    "REQUEST",
     "RECIEVE",
     "VOTE",
     "VOTE_ACK",
@@ -25,7 +27,6 @@ const actions = {
   COMMENT: [
     "SUBMIT",
     "SUBMIT_ACK",
-    "RECIEVE_LIST",
     "VOTE",
     "VOTE_ACK",
   ]

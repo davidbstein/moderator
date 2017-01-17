@@ -13,7 +13,7 @@ const initial_state = {
 }
 
 export default function(state=test_state, action) {
-  switch (action) {
+  switch (action.type) {
     case actionTypes.PLACEHOLDER:
       return action.message
     default:

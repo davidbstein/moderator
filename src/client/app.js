@@ -6,7 +6,6 @@ import {Provider} from 'react-redux'
 import Moderator from './moderator'
 import reducer from './client-model/reducer'
 import viewReducer from './client-model/viewReducer'
-import API from './client-model/API'
 
 const render = (store) => {
   ReactDOM.render(
@@ -28,7 +27,5 @@ const store = (
     state: reducer,
     viewState: viewReducer,
   }));
-
-const api = new API(store)
 
 render(store);

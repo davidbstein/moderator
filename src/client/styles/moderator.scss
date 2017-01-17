@@ -15,6 +15,26 @@
   transition-delay: $transition-delay;
 }
 
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
 body {
   font-family: sans-serif;
   background: $background;
@@ -25,6 +45,46 @@ body {
 .event-question-list {
   margin: auto;
   max-width: $question-width;
+}
+
+.question-input-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.question-input {
+  margin: auto;
+  max-width: $question-width;
+  .card {
+    background: $item-background;
+    border: $card-border;
+    box-shadow: $item-shadow;
+    z-index: $zidx-container;
+    padding: 8px;
+    margin-top: 32px;
+    display: block;
+  }
+  h1 {
+    font-size: 24px;
+    margin: 16px 16px;
+  }
+  p {
+    line-height: 24px;
+    margin: 16px 16px;
+  }
+  .question-input-form {
+    margin: 32px;
+    textarea{
+      font-size: 14px;
+      height: 7em;
+      width: calc(100% - (2 * 8px));
+      border: 1px solid #ccc;
+    }
+    margin: 8px;
+  }
 }
 
 button {
@@ -63,6 +123,7 @@ button {
   text-align: center;
   font-family: monospace;
   line-height: 16px;
+  cursor: default;
 }
 
 
@@ -100,7 +161,9 @@ button {
     text-align: center;
   }
 }
+.question-input{
 
+}
 .question {
   margin: 16px;
   margin-top: 32px;
@@ -175,6 +238,15 @@ button {
           float: right;
         }
       }
+    }
+    .comment-loader {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(168, 182, 199, 0.31);
+
+      margin: 15px auto;
+      -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+      animation: sk-rotateplane 1.2s infinite ease-in-out;
     }
     .comment {
       display: flex;

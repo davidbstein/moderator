@@ -27,11 +27,17 @@ class Question:
   @classmethod
   def get_all_for_event(cls, event, user):
     assert event['domain'] == user['domain'], "how did you call this?"
-    return map(r2d,
-      DB.ex(DB.questions.select(
-        DB.questions.columns.e_id == event['id']
-      ))
-    )
+    return {
+      q['id']: {
+        "question": q,
+        "comments": None
+      }
+      for q in map(r2d,
+        DB.ex(DB.questions.select(
+          DB.questions.columns.e_id == event['id']
+        ))
+      )
+    }
 
   @classmethod
   def create(cls, event_lookup_id, content, **__):

@@ -9,7 +9,9 @@ export default connect(
     render() {
       switch (this.props.viewState.page) {
         case "event":
-          return <Event />
+          return <Event
+            event_id={this.props.viewState.state.event_id}
+          />
         default:
           return <div> error :( </div>
       }
