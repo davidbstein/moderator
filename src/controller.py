@@ -35,7 +35,8 @@ import urlparse
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = os.environ.get("SESSION_TYPE")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.debug=True
+app.config["VERSION"] = os.environ.get("VERSION")
+app.debug=os.environ.get("DEBUG") == "DEBUG"
 
 _g_client_secret = os.environ.get("GOOGLE_CLIENT_SECRET")
 _g_client_id = os.environ.get("GOOGLE_CLIENT_ID")

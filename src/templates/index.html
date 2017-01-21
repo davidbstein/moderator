@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title> Appboy Moderator </title>
     <link rel="icon" type="image/png" href="/static/favicon.png">
-    <link href="/static/bundle.css" rel="stylesheet"></link>
+    <link href="/static/bundle.css?_bust={{config.VERSION}}" rel="stylesheet"></link>
     <script> window._DEV_MODE = true; </script>
     <script> window._INFO = {{ info|tojson|safe }} </script>
   </head>
   <body>
     <div id="target"></div>
   </body>
-  <script src="/static/bundle.js"></script>
+  <script src="/static/bundle.js?_bust={{config.VERSION}}"></script>
 </html>
