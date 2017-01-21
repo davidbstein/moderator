@@ -257,4 +257,5 @@ def get_event(user=None, body=None):
 def get_question(user=None, body=None):
   return get_all_question_info(body['question_id'], user['email'])
 
-app.run()
+if __name__ == "__main__":
+  app.run()
