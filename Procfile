@@ -1,1 +1,1 @@
-web: start-server.sh
+web: cd src; gunicorn controller:app
