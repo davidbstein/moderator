@@ -4,18 +4,17 @@ import CommentList from './comment-list'
 import Vote from './vote'
 
 export default class Question extends React.Component {
-  upvote() {
-    console.log("up");
-  }
-  downvote() {
-    console.log("down");
-  }
   render() {
     const q = this.props.question.question;
     const comments = this.props.question.comments;
     return <div className="question">
+    {q.id}
       <div className="question-container">
-        <Vote upvote={this.upvote} downvote={this.downvote} score={q.score}/>
+        <Vote
+          upvote={this.props.upvote}
+          downvote={this.props.downvote}
+          score={q.score}
+        />
         <div className="question-content">{q.content}</div>
       </div>
       <div className="question-comments">

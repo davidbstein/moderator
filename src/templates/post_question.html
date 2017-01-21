@@ -14,8 +14,8 @@
       <div class="card">
         <h1> Post a question anonymously </h1>
         <div class="question-input-form">
-          <form target="/submit_question/{{ event_id }}">
-          <div><textarea></textarea></div>
+          <form action="/submit_question/{{ lookup_id }}" method="post">
+          <div><textarea name="content"></textarea></div>
           <button>SUBMIT</button>
           </form>
         </div>
@@ -26,7 +26,7 @@
           event. It makes no additional effort to track your
           identify (feel free to use incognito mode, ect.)
         </p><p>
-          Anything question you post will be added to the
+          Any question you post will be added to the
           event this link is associated with. You'll need to
           log in to view, vote, and comment on questions that
           have been posted.

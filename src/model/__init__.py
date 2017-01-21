@@ -5,12 +5,12 @@ from question import Question
 from user import User
 from helpers import DB as __DB
 
-def get_all_event_info(event_id, user_email):
-  event = Event.get(event_id, user_email)
+def get_all_event_info(event_lookup, user_email):
+  e = Event.lookup(event_lookup, user_email)
   user = User.get(user_email)
   return {
-    "event": event,
-    "questions": Question.get_all_for_event(event, user),
+    "event": e,
+    "questions": Question.get_all_for_event(e, user),
   }
 
 def get_all_question_info(question_id, user_email):

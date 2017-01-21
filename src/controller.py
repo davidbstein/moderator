@@ -17,6 +17,10 @@ from flask.sessions import (
 from model import (
   get_all_event_info,
   get_all_question_info,
+  Comment,
+  Event,
+  Org,
+  Question,
 )
 from oauth2client.client import OAuth2WebServerFlow
 import json
@@ -69,7 +73,10 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
         raise Exception("cannot name a url chunck 'body'")
       kwargs['user'] = session.get("user_info")
       if request.method == "POST":
-        kwargs['body'] = json.loads(request.data)
+        if request.data:
+          kwargs['body'] = json.loads(request.data)
+        else:
+          kwargs['body'] = dict(request.form)
       if request.method == "GET":
         kwargs['body'] = request.args
       to_return = fn(**kwargs)
@@ -87,7 +94,7 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
   return outer
 
 _ORG_PREFIX = "/o/<string:org>"
-_EVENT_PREFIX = "{ORG_PREFIX}/<string:_event_name>-<string:event_id>".format(ORG_PREFIX=_ORG_PREFIX)
+_EVENT_PREFIX = "/e/<string:_event_name>-<string:lookup_id>"
 _POST = ("GET", "POST")
 _GET = ("GET", "POST")
 
@@ -112,7 +119,7 @@ def page_not_found(e):
 @app.route("/", methods=_GET)
 @web_helper(require_auth=True)
 def home(body, user, **__):
-  return render_template("index.html", user_info=session)
+  return render_template("index.html", user_info=session, info={})
 
 @app.route("/about", methods=_GET)
 @web_helper(require_auth=False)
@@ -148,29 +155,39 @@ def logout(body, **__):
   session['user_info'] = {}
   return redirect("/login")
 
-@app.route("/post_question/<string:event_id>", methods=_GET)
+@app.route("/post_question/<string:lookup_id>", methods=_GET)
 @web_helper(require_auth=False)
-def question_form(event_id, **__):
-  return render_template("post_question.html", event_id=event_id)
+def question_form(lookup_id, **__):
+  return render_template("post_question.html", lookup_id=lookup_id)
+
+@app.route("/submit_question/<string:lookup_id>", methods=_POST)
+@web_helper(require_auth=False)
+def post_question_form(lookup_id, body=None, **__):
+  content = body['content'][0]
+  question = Question.create(lookup_id, content)
+  return render_template("question_posted.html", lookup_id=lookup_id, question=question)
 
 #######
 # local routes
 #######
 
 @app.route(_ORG_PREFIX, methods=_GET)
-@web_helper()
+@web_helper(require_auth=True)
 def show_org(org=None, **__):
   assert org in ('appboy.com', 'gmail.com'), "unknown org"
   return org
 
 @app.route(_EVENT_PREFIX, methods=_GET)
-@web_helper()
-def show_event(event_id, **kwargs):
-  return json.dumps(kwargs)
+@web_helper(require_auth=True)
+def show_event(lookup_id=None, **kwargs):
+  return render_template("index.html", user_info=session, info={
+    'lookup_id': lookup_id,
+    'page': 'event'
+  })
 
 @app.route(_EVENT_PREFIX + "/<question_id>", methods=_GET)
-@web_helper()
-def show_question(event_id, **kwargs):
+@web_helper(require_auth=True)
+def show_question(lookup_id, **kwargs):
   return json.dumps(kwargs)
 
 ##########
@@ -192,30 +209,37 @@ def post_org(**kwargs):
 def post_event(**kwargs):
   return {}
 
-@app.route("/api/new_question", methods=_POST)
-@web_helper(json_encode_resp=True)
-def post_question(**kwargs):
-  return {"foo": "bar"}
-
 @app.route("/api/new_comment", methods=_POST)
 @web_helper(json_encode_resp=True)
-def post_comment(**kwargs):
-  return {"foo": "bar"}
+def post_comment(body=None, user=None):
+  comment = Comment.create(body['question_id'], user['email'], body['content'])
+  return comment
 
 @app.route("/api/new_question_vote", methods=_POST)
 @web_helper(json_encode_resp=True)
 def post_question_vote(user=None, body=None):
-  return {"foo": "bar"}
+  question = Question.vote(
+    question_id=body['question_id'],
+    user_email=user['email'],
+    score=body['vote']
+  )
+  return question
 
 @app.route("/api/new_comment_vote", methods=_POST)
 @web_helper(json_encode_resp=True)
 def post_comment_vote(user=None, body=None):
-  return {"foo": "bar"}
+  comment = Comment.vote(
+    question_id=body['question_id'],
+    comment_id=body['comment_id'],
+    user_email=user['email'],
+    score=body['vote']
+  )
+  return comment
 
 @app.route("/api/get_event", methods=_POST)
 @web_helper(json_encode_resp=True)
 def get_event(user=None, body=None):
-  return get_all_event_info(body['event_id'], user['email'])
+  return get_all_event_info(body['lookup_id'], user['email'])
 
 @app.route("/api/get_question", methods=_POST)
 @web_helper(json_encode_resp=True)

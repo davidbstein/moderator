@@ -10,11 +10,23 @@ export default connect(
   class Event extends React.Component {
     constructor(props) {
       super(props);
-      props.API.get_event(1);
+      props.API.get_event(props.lookup_id);
+    }
+    reload_question(question_id){
+      this.props.API.get_question(question_id,
+        () => this.setState({question_pending: false})
+      );
+    }
+    question_vote(question_id, vote){
+      this.props.API.new_question_vote(
+        question_id,
+        vote,
+        this.reload_question.bind(this, question_id)
+      );
     }
     render() {
-      const e = this.props.state.events[this.props.event_id];
-      if (!e.event){
+      const e = this.props.state.event_lookup[this.props.lookup_id];
+      if (!e || !e.event){
         return <div className="loader event-loader" />
       }
       return <div className="event">
@@ -31,7 +43,10 @@ export default connect(
           You do not need to be signed in to post a question.
         </div>
         <div className="event-question-list">
-          <QuestionList questions={e.questions} />
+          <QuestionList
+            questions={e.questions}
+            vote={this.question_vote.bind(this)}
+          />
         </div>
       </div>
     }

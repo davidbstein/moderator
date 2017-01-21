@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Appboy Moderator </title>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link href="/static/bundle.css" rel="stylesheet"></link>
+    <script> window._DEV_MODE = true; </script>
+    <script> window._INFO = {{ info_json }}; </script>
+  </head>
+  <body>
+    <div class="question-input-wrapper">
+      <div class="question-submitted">
+        <h1> Question Posted </h1>
+        <div class="card">
+          <div ="posted_question_content">
+            <p>
+              {{ question.content }}
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <p>
+            Any question you post will be added anonymously to the
+            event this link is associated with. You'll need to
+            log in to view, vote, and comment on questions that
+            have been posted.
+          </p>
+          <p style="text-align: center">
+          <a href="/e/--{{ lookup_id }}">go to event</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

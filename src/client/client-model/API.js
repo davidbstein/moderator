@@ -1,5 +1,8 @@
 import ActionTypes from "../actionTypes"
 
+
+const VERBOSE = true;
+
 // currently not used.
 function JSONget(uri, callback)
 {
@@ -18,12 +21,14 @@ function JSONget(uri, callback)
 
 function JSONpost(uri, postData, callbacks=[])
 {
+  if (VERBOSE) console.log(`requesting ${uri} with ${JSON.stringify(postData)} -- (callbacks: ${callbacks.length})`)
   const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = () => {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
       const response = JSON.parse(xmlHttp.responseText);
-      for (callback in Object.values(callbacks))
+      for (let callback of callbacks.filter(fn => typeof(fn) == 'function')){
         callback(response);
+      }
     }
     else if (xmlHttp.readyState < 4){
       // this is fine.
@@ -40,19 +45,18 @@ class Caller {
   constructor(dispatch){
     this.dispatch=dispatch;
   }
-  process_response(response_action_type, callback, data){
+  process_response(response_action_type, data){
     this.dispatch({
       type: response_action_type,
       data: data,
     })
-    if (callback) callback(data);
   }
   post(uri, data, submit_action_type, response_action_type, callback) {
     this.dispatch({type: submit_action_type, data: data})
     JSONpost(
       uri,
       data,
-      this.process_response.bind(this, response_action_type, callback)
+      [this.process_response.bind(this, response_action_type), callback]
     )
   }
 }
@@ -61,33 +65,36 @@ export default class {
   constructor(dispatch){
     this.caller = new Caller(dispatch);
   }
-  new_comment_vote(question_id, comment_id, vote){
+  new_comment_vote(question_id, comment_id, vote, callback){
     this.caller.post(
-      "api/new_comment_vote",
-      params,
+      "/api/new_comment_vote",
+      {question_id, comment_id, vote},
       ActionTypes.COMMENT.VOTE,
       ActionTypes.COMMENT.VOTE_ACK,
+      callback,
     );
   }
-  new_question_vote(question_id, vote){
+  new_question_vote(question_id, vote, callback){
     this.caller.post(
-      "api/new_question_vote",
-      params,
+      "/api/new_question_vote",
+      {question_id, vote},
       ActionTypes.QUESTION.VOTE,
       ActionTypes.QUESTION.VOTE_ACK,
+      callback,
     );
   }
-  new_comment(question_id, content){
+  new_comment(question_id, content, callback){
     this.caller.post(
-      "api/new_comment",
-      params,
+      "/api/new_comment",
+      {question_id, content},
       ActionTypes.COMMENT.SUBMIT,
       ActionTypes.COMMENT.SUBMIT_ACK,
+      callback,
     );
   }
-  new_question(event_id, content){
+  new_question(event_lookup, content){
     this.caller.post(
-      "api/new_question",
+      "/api/new_question",
       params,
       ActionTypes.QUESTION.SUBMIT,
       ActionTypes.QUESTION.SUBMIT_ACK,
@@ -95,24 +102,25 @@ export default class {
   }
   new_event(org_id, params){
     this.caller.post(
-      "api/new_event",
+      "/api/new_event",
       params,
       ActionTypes.EVENT.SUBMIT,
       ActionTypes.EVENT.SUBMIT_ACK,
     );
   }
-  get_question(question_id){
+  get_question(question_id, callback){
     this.caller.post(
-      "api/get_question",
+      "/api/get_question",
       {question_id},
       ActionTypes.QUESTION.REQUEST,
       ActionTypes.QUESTION.RECIEVE,
+      callback,
     );
   }
-  get_event(event_id){
+  get_event(lookup_id){
     this.caller.post(
-      "api/get_event",
-      {event_id},
+      "/api/get_event",
+      {lookup_id},
       ActionTypes.EVENT.REQUEST,
       ActionTypes.EVENT.RECIEVE,
     );

@@ -3,7 +3,7 @@ import actionTypes from "../actionTypes"
 const test_state = {
   page: "event",
   state: {
-    event_id: 1
+    lookup_id: 1
   }
 }
 
@@ -12,12 +12,29 @@ const initial_state = {
   state: {}
 }
 
-export default function(state=test_state, action) {
+export default function(state=initial_state, action) {
   switch (action.type) {
     case "@@INIT":
+      if (window._INFO.page == undefined){
+        return {
+          ...state,
+          page: 'home',
+          state: {
+          }
+        }
+      }
+      if (window._INFO.page == 'event'){
+        return {
+          ...state,
+          page: 'event',
+          state: {
+            lookup_id: window._INFO.lookup_id,
+          },
+        }
+      }
       return state
     case actionTypes.PLACEHOLDER:
-      return action.message
+      return state
     default:
       return state
   }

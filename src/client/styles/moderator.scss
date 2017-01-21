@@ -1,39 +1,7 @@
 @import "reset";
 @import "constants";
 @import "login-fields";
-
-@mixin transition($transition...) {
-  -moz-transition: $transition;
-  -o-transition: $transition;
-  -webkit-transition: $transition;
-  transition: $transition;
-}
-@mixin transition-delay($transition-delay...) {
-  -moz-transition-delay: $transition-delay;
-  -o-transition-delay: $transition-delay;
-  -webkit-transition-delay: $transition-delay;
-  transition-delay: $transition-delay;
-}
-
-
-@-webkit-keyframes sk-rotateplane {
-  0% { -webkit-transform: perspective(120px) }
-  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
-}
-
-@keyframes sk-rotateplane {
-  0% {
-    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
-  } 50% {
-    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
-  } 100% {
-    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-  }
-}
+@import "question";
 
 body {
   font-family: sans-serif;
@@ -55,7 +23,7 @@ body {
   margin: 0 auto;
 }
 
-.question-input {
+.question-submitted, .question-input {
   margin: auto;
   max-width: $question-width;
   .card {
@@ -69,11 +37,16 @@ body {
   }
   h1 {
     font-size: 24px;
-    margin: 16px 16px;
   }
   p {
     line-height: 24px;
     margin: 16px 16px;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   .question-input-form {
     margin: 32px;
@@ -175,106 +148,4 @@ button {
 }
 .question-input{
 
-}
-.question {
-  margin: 16px;
-  margin-top: 32px;
-  div {
-    position: relative;
-  }
-  .question-container {
-    background: $item-background;
-    border: $card-border;
-    box-shadow: $item-shadow;
-    display: flex;
-    z-index: $zidx-container;
-    .question-content {
-      margin: 16px;
-      line-height: 16px;
-    }
-    .vote {
-      margin-left: 16px;
-      margin-right: 16px;
-      height: $question-vote-width;
-      .upvote, .downvote {
-        height: #{(($question-vote-width / 2) - 16)};
-      }
-    }
-  }
-  .question-comments {
-    z-index: $zidx-comment;
-    background: $item-background;
-    border: $card-border;
-    border-bottom: 1px solid $border-grey;
-    box-shadow: $item-shadow;
-    margin-left: 16px;
-    margin-right: 16px;
-    .slider-toggle {
-      @include transition-delay(3s);
-      @include transition(all 100ms);
-      border-top: 1px solid #eee;
-      text-align: center;
-      line-height: 16px;
-      padding-top: 8px;
-      margin: 8px;
-      color: #88f;
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
-    }
-    .slider {
-      @include transition(all 250ms);
-    }
-    .slider-false {
-      // overloads a comuter value for animations
-      max-height: 0px !important;
-      overflow: hidden;
-    }
-    .slider-true {
-      overflow: scroll;
-    }
-    .comment-input {
-      margin: 8px;
-      padding-left: $comment-vote-width;
-      color: $item-detail-color;
-      textarea {
-        width: calc(100% - 16px);
-        height: 72px;
-        border: $element-border;
-        font-size: 16px;
-      }
-      .buttons {
-        margin: 16px;
-        button {
-          float: right;
-        }
-      }
-    }
-    .comment-loader {
-      width: 40px;
-      height: 40px;
-      background-color: rgba(168, 182, 199, 0.31);
-      margin: 15px auto;
-    }
-    .comment {
-      display: flex;
-      margin-top: 8px;
-      .comment-content {
-        margin: 16px;
-        line-height: 16px;
-      }
-      .comment-author {
-        color: $item-detail-color;
-        margin-bottom: 4px;
-      }
-      .vote {
-        margin-left: 16px;
-        margin-right: 16px;
-        .upvote, .downvote {
-          height: #{(($question-vote-width / 2) - 16)};
-        }
-      }
-    }
-  }
 }

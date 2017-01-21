@@ -30,11 +30,15 @@ class Event:
     return map(r2d, DB.ex(query))
 
   @classmethod
-  def lookup(cls, event_lookup_id):
+  def lookup(cls, event_lookup_id, user_email=None, override_auth=False):
     query = DB.events.select(
       DB.events.columns.lookup_id==event_lookup_id
     )
-    return r2d(DB.ex(query).fetchone())
+    event = DB.ex(query).fetchone()
+    if not override_auth:
+      if event.domain != User.get(user_email).domain:
+        raise PermissionError("No event found in the set of events user has access to")
+    return r2d(event)
 
   @classmethod
   def create(cls, title, user_email, description=None, **__):

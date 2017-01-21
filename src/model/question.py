@@ -26,6 +26,7 @@ class Question:
 
   @classmethod
   def get_all_for_event(cls, event, user):
+    print "FOOBAR", event, user
     assert event['domain'] == user['domain'], "how did you call this?"
     return {
       q['id']: {
@@ -41,7 +42,7 @@ class Question:
 
   @classmethod
   def create(cls, event_lookup_id, content, **__):
-    event = Event.lookup(event_lookup_id)
+    event = Event.lookup(event_lookup_id, override_auth=True)
     command = DB.questions.insert(dict(
       e_id=event['id'],
       flagged=False,
