@@ -1,0 +1,95 @@
+@import "constants";
+
+body {
+  font-family: sans-serif;
+  background: $background;
+  background-image: url('/static/bg.png');
+  color: $item-focus-color;
+}
+
+a {
+  color: $link-color;
+  font-weight: 500;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  border: $element-border;
+  background: $button-background;
+  font-size: 12px;
+  outline: 0;
+  &:hover {
+    background: $button-hover-background;
+  }
+  &:active {
+    background: $button-active-background;
+  }
+}
+
+.loader {
+  // loaders must have width, height, color, and margin
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+.page-header {
+  background: $item-background;
+  box-shadow: $item-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $zidx-header;
+  width: 100%;
+  .page-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px;
+  }
+  .page-title {
+    font-size: 32px;
+  }
+}
+
+.underheader {
+  height: 64px;
+}
+
+.upvote-arrow {
+  margin-top: 8px;
+  border-bottom: 16px solid $upvote-color;
+  border-left: 8px solid rgba(0,0,0,0);
+  border-right: 8px solid rgba(0,0,0,0);
+  width:0px;
+  height: 0px;
+}
+.downvote-arrow {
+  border-top: 16px solid $downvote-color;
+  border-left: 8px solid rgba(0,0,0,0);
+  border-right: 8px solid rgba(0,0,0,0);
+  width: 0px;
+  height: 0px;
+}
+.upvote:hover .upvote-arrow, .downvote:hover .downvote-arrow {
+  border-top-color: red;
+  border-bottom-color: green;
+}
+.vote-score {
+  text-align: center;
+  font-family: monospace;
+  line-height: 16px;
+  cursor: default;
+}
+
+.card {
+  background: $item-background;
+  border: $card-border;
+  box-shadow: $item-shadow;
+  z-index: $zidx-container;
+  padding: 8px;
+  margin-top: 32px;
+  display: block;
+}

@@ -26,13 +26,18 @@ export default connect(
     }
     render() {
       const e = this.props.state.event_lookup[this.props.lookup_id];
+
+      const o = this.props.state.org;
       if (!e || !e.event){
         return <div className="loader event-loader" />
       }
       return <div className="event">
         <div className="page-header">
           <div className="page-header-container">
-            <div className="event-title page-title">{e.event.title}</div>
+            <div className="event-title page-title">
+            <a href="/">{o.domain} moderator</a> {" > "}
+            {e.event.title}
+            </div>
             <div className="logout-button"><a href="/logout">logout</a></div>
           </div>
         </div>

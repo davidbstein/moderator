@@ -1,5 +1,7 @@
 @import "constants";
 
+
+// shared by event question views and question entry.
 .question {
   margin: 16px;
   margin-top: 32px;
@@ -100,5 +102,42 @@
         }
       }
     }
+  }
+}
+
+// unique to question entry
+.question-input-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.question-submitted, .question-input {
+  margin: auto;
+  max-width: $question-width;
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    line-height: 24px;
+    margin: 16px 16px;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .question-input-form {
+    margin: 32px;
+    textarea{
+      font-size: 14px;
+      height: 7em;
+      width: calc(100% - (2 * 8px));
+      border: 1px solid #ccc;
+    }
+    margin: 8px;
   }
 }

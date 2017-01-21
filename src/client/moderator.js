@@ -18,11 +18,11 @@ export default connect(
           return <Event
             lookup_id={this.props.viewState.state.lookup_id}
           />
-        case "question":
-          const question = this.props.viewState.state.question
-          return <Question
-            question={question}
-          />
+        // case "question":
+        //   const question = this.props.viewState.state.question
+        //   return <QuestionPage
+        //     question={question}
+        //   />
         default:
           return <div> error :( </div>
       }

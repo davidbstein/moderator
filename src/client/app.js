@@ -18,14 +18,18 @@ const render = (store) => {
   )
 };
 
+const storeBuilder = (
+  window.devToolsExtension && window._DEV_MODE ?
+  window.devToolsExtension()(createStore) :
+  createStore
+)
+const compiledReducer = combineReducers({
+  state: reducer,
+  viewState: viewReducer,
+})
+
 // dev tools
-const store = (
-    window.devToolsExtension && window._DEV_MODE ?
-    window.devToolsExtension()(createStore) :
-    createStore
-  )(combineReducers({
-    state: reducer,
-    viewState: viewReducer,
-  }));
+const store = storeBuilder(compiledReducer);
+store.dispatch({type: "moderator/INIT"})
 
 render(store);

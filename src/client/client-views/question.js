@@ -8,7 +8,6 @@ export default class Question extends React.Component {
     const q = this.props.question.question;
     const comments = this.props.question.comments;
     return <div className="question">
-    {q.id}
       <div className="question-container">
         <Vote
           upvote={this.props.upvote}

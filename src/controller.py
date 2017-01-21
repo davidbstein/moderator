@@ -17,6 +17,8 @@ from flask.sessions import (
 from model import (
   get_all_event_info,
   get_all_question_info,
+  get_org_info_by_user,
+  list_events_for_user,
   Comment,
   Event,
   Org,
@@ -119,7 +121,13 @@ def page_not_found(e):
 @app.route("/", methods=_GET)
 @web_helper(require_auth=True)
 def home(body, user, **__):
-  return render_template("index.html", user_info=session, info={})
+  org = get_org_info_by_user(user['email'])
+  if (org):
+    return render_template("index.html", user_info=session, info={
+      'page': "org",
+      'org_info': org,
+      'events': list_events_for_user(user['email'])
+    })
 
 @app.route("/about", methods=_GET)
 @web_helper(require_auth=False)
@@ -179,10 +187,12 @@ def show_org(org=None, **__):
 
 @app.route(_EVENT_PREFIX, methods=_GET)
 @web_helper(require_auth=True)
-def show_event(lookup_id=None, **kwargs):
+def show_event(lookup_id=None, user=None, **kwargs):
+  org = get_org_info_by_user(user['email'])
   return render_template("index.html", user_info=session, info={
     'lookup_id': lookup_id,
-    'page': 'event'
+    'page': 'event',
+    'org_info': org,
   })
 
 @app.route(_EVENT_PREFIX + "/<question_id>", methods=_GET)

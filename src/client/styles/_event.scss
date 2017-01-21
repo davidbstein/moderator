@@ -1,0 +1,24 @@
+@import "constants";
+
+.event-question-list {
+  margin: auto;
+  max-width: $question-width;
+}
+
+.event-loader {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(.7, .2, .2, .1);
+  margin: 64px auto;
+}
+.event {
+  .event-title {
+    font-size: 32px;
+    font-weight: 100;
+  }
+  .unique-link-container{
+    max-width: $question-width;
+    margin: 32px auto;
+    text-align: center;
+  }
+}

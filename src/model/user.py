@@ -12,11 +12,12 @@ class User:
     get_query = DB.users.select(DB.users.columns.u_email == user_email)
     user = DB.ex(get_query).fetchone()
     if user:
-      return user
+      return r2d(user)
     insert_command = DB.users.insert({
       "u_email": user_email,
       "domain": user_email.split("@")[-1],
       "info": {},
     })
     DB.ex(insert_command)
-    return r2d(DB.ex(get_query).fetchone())
+    to_ret = r2d(DB.ex(get_query).fetchone())
+    return to_ret

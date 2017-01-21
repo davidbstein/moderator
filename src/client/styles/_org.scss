@@ -1,0 +1,44 @@
+@import "constants";
+
+.new-event-link-container {
+  max-width: $question-width;
+  margin: 32px auto;
+  text-align: center;
+  font-size: 18px;
+}
+
+.org-event-list {
+  margin: auto;
+  max-width: $question-width;
+  .event-card {
+    padding: 0px;
+    padding-top: 16px;
+    .event-info-container {
+      .event-title {
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+    .event-card-button {
+      border: 1px solid #ddd;
+      font-size: 14px;
+      border-bottom: 0px;
+      width: 50%;
+      text-align: center;
+      padding: 8px 4px;
+      background: $button-background;
+      cursor: pointer;
+      &:hover{
+        background: $button-hover-background;
+      }
+      &:active{
+        background: $button-active-background;
+      }
+    }
+    .event-card-actions{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+  }
+}

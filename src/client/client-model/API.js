@@ -1,7 +1,7 @@
 import ActionTypes from "../actionTypes"
 
 
-const VERBOSE = true;
+const VERBOSE = false;
 
 // currently not used.
 function JSONget(uri, callback)
@@ -92,22 +92,17 @@ export default class {
       callback,
     );
   }
-  new_question(event_lookup, content){
-    this.caller.post(
-      "/api/new_question",
-      params,
-      ActionTypes.QUESTION.SUBMIT,
-      ActionTypes.QUESTION.SUBMIT_ACK,
-    );
-  }
-  new_event(org_id, params){
-    this.caller.post(
-      "/api/new_event",
-      params,
-      ActionTypes.EVENT.SUBMIT,
-      ActionTypes.EVENT.SUBMIT_ACK,
-    );
-  }
+  // new_question(event_lookup, content){
+  //   this.caller.post(
+  //     "/api/new_question",
+  //     params,
+  //     ActionTypes.QUESTION.SUBMIT,
+  //     ActionTypes.QUESTION.SUBMIT_ACK,
+  //     params,
+  //     ActionTypes.EVENT.SUBMIT,
+  //     ActionTypes.EVENT.SUBMIT_ACK,
+  //   );
+  // }
   get_question(question_id, callback){
     this.caller.post(
       "/api/get_question",

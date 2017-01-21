@@ -36,7 +36,7 @@ class Event:
     )
     event = DB.ex(query).fetchone()
     if not override_auth:
-      if event.domain != User.get(user_email).domain:
+      if event.domain != User.get(user_email)['domain']:
         raise PermissionError("No event found in the set of events user has access to")
     return r2d(event)
 

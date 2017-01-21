@@ -7,10 +7,34 @@ const initial_state = {
   questions: {},
 }
 
+
+function init_state(mutable_state, action){
+  const preload_info = window._INFO;
+  switch (preload_info.page){
+    case 'event':
+      mutable_state.org = preload_info.org_info;
+      return mutable_state;
+    case 'org':
+      mutable_state.org = preload_info.org_info;
+      preload_info.events.forEach(
+        (event) => {
+          mutable_state.event_lookup[event.lookup_id] = event;
+          mutable_state.e_id2lookup[event.id] = event.lookup_id;
+        }
+      );
+      return mutable_state;
+    default:
+      return mutable_state;
+  }
+}
+
 export default function(state=initial_state, action) {
   const next_state = {...state};
   let event, event_lookup_id;
   switch (action.type) {
+    case "moderator/INIT":
+      init_state(next_state, action)
+      return next_state
     case actionTypes.EVENT.REQUEST:
       event = next_state.event_lookup[action.data.lookup_id] || {}
       next_state.event_lookup[action.data.lookup_id] = {
