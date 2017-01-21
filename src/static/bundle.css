@@ -372,6 +372,9 @@ button {
   text-align: center;
   font-size: 18px; }
 
+.org-title a {
+  color: #002; }
+
 .org-event-list {
   margin: auto;
   max-width: 750px; }

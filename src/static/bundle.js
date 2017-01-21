@@ -22853,12 +22853,16 @@
 	              'div',
 	              { className: 'event-title page-title' },
 	              _react2.default.createElement(
-	                'a',
-	                { href: '/' },
-	                o.domain,
-	                ' moderator'
+	                'span',
+	                { className: 'org-title' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '/' },
+	                  ' ',
+	                  o.domain,
+	                  ' moderator '
+	                )
 	              ),
-	              ' ',
 	              " > ",
 	              e.event.title
 	            ),
