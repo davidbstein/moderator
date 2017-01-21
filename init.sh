@@ -8,6 +8,7 @@ then
   export SECRET_KEY="MY SECRET KEY"
   export SESSION_TYPE="filesystem"
   export URL="http://127.0.0.1:5000"
+  export DEBUG="DEBUG"
   pg_ctl -D db -l logfile start
 else
   echo 'you must run `source init.sh`' || exit 0
