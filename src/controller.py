@@ -3,6 +3,7 @@
 
 from flask import (
   Flask,
+  abort,
   redirect,
   render_template,
   request,
@@ -82,7 +83,12 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
           kwargs['body'] = dict(request.form)
       if request.method == "GET":
         kwargs['body'] = request.args
-      to_return = fn(**kwargs)
+      try:
+        to_return = fn(**kwargs)
+      except AssertionError, e:
+        print e.message
+        abort(403, e.message)
+
       if json_encode_resp:
         return Response(
           response=json.dumps(to_return),
@@ -106,13 +112,18 @@ _GET = ("GET", "POST")
 # errors
 #######
 
+@app.errorhandler(403)
+def page_not_found(e):
+  print e
+  return render_template('403.html', message=e.description), 404
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+  return render_template('404.html'), 404
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return render_template('500.html'), 404
+  return render_template('5xx.html'), 500
 
 
 #######

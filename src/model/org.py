@@ -15,7 +15,7 @@ class Org:
     org = DB.ex(
       DB.orgs.select(DB.orgs.columns.domain == domain)
     ).fetchone()
-    assert org, "no such org"
+    assert org, "There is no org for the @" + user['domain'] + " domain yet! Are you signed in with your work account?"
     return r2d(org)
 
   @classmethod
