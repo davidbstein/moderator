@@ -113,7 +113,7 @@ button {
     font-size: 32px; }
 
 .underheader {
-  height: 64px; }
+  min-height: 72px; }
 
 .upvote-arrow {
   margin-top: 8px;
@@ -382,12 +382,15 @@ button {
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
 .new-event-link-container {
   max-width: 750px;
-  margin: 32px auto;
+  margin: 64px auto;
   text-align: center;
   font-size: 18px; }
+  .new-event-link-container p {
+    margin: 32px; }
 
 .org-title a {
-  color: #002; }
+  color: #002;
+  font-weight: 100; }
 
 .org-event-list {
   margin: auto;

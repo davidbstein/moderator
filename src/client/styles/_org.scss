@@ -2,14 +2,18 @@
 
 .new-event-link-container {
   max-width: $question-width;
-  margin: 32px auto;
+  margin: 64px auto;
   text-align: center;
   font-size: 18px;
+  p {
+    margin: 32px;
+  }
 }
 
 .org-title {
   a {
     color: #002;
+    font-weight: 100;
   }
 }
 

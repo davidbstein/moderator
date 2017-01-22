@@ -23,11 +23,6 @@ export default connect(
           </div>
         </div>
         <div className="underheader" />
-        <div className="new-event-link-container">
-          To create a new event, please contact your
-          team's <a href="mailto:david.stein@appboy.com">
-          moderator admin</a>.
-        </div>
         <div className="org-event-list">
         {
           Object.values(this.props.state.event_lookup).sort(
@@ -39,6 +34,14 @@ export default connect(
             }
           )
         }
+        </div>
+        <div className="new-event-link-container">
+          <p>
+          To create a new event, please contact your
+          team's <a href="mailto:david.stein@appboy.com">
+          moderator admin</a>.
+          </p>
+          <p> More information on moderator <a href="/about"> here </a></p>
         </div>
       </div>
     }
