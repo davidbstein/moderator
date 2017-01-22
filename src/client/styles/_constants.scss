@@ -1,4 +1,3 @@
-
 $border-grey: #ccc;
 $question-vote-width: 72px;
 $comment-vote-width: 32px;
@@ -40,7 +39,6 @@ $zidx-header: 100;
   -webkit-transition-delay: $transition-delay;
   transition-delay: $transition-delay;
 }
-
 
 @-webkit-keyframes sk-rotateplane {
   0% { -webkit-transform: perspective(120px) }
