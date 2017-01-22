@@ -3,22 +3,6 @@ import ActionTypes from "../actionTypes"
 
 const VERBOSE = false;
 
-// currently not used.
-function JSONget(uri, callback)
-{
-  const xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = () => {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-      callback(JSON.parse(xmlHttp.responseText));
-    else if (xmlHttp.readyState < 4)
-      console.log(xmlHttp.readyState, xmlHttp.status)
-    else
-      throw(xmlHttp)
-  }
-  xmlHttp.open("GET", uri, true);
-  xmlHttp.send(null);
-}
-
 function JSONpost(uri, postData, callbacks=[])
 {
   if (VERBOSE) console.log(`requesting ${uri} with ${JSON.stringify(postData)} -- (callbacks: ${callbacks.length})`)
