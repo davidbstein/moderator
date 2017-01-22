@@ -13,3 +13,6 @@ git push -f heroku HEAD:master
 git push
 echo "!! restoring"
 git checkout master
+scss src/client/styles/moderator.scss:src/static/bundle.css
+./node_modules/.bin/webpack src/client/app.js src/static/bundle.js --optimize-minimize
+echo "!! done"
