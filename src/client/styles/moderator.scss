@@ -5,7 +5,7 @@
 @import "chrome";
 
 @import "error";
-
+@import "about";
 // if there is a collision in these imports, the latter import wins.
 // namespacing is usually a good idea if you don't want to optimize too much.
 @import "login-fields";
