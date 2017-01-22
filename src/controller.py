@@ -36,7 +36,7 @@ import urlparse
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = os.environ.get("SESSION_TYPE")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["VERSION"] = os.environ.get("VERSION")
+app.config["VERSION"] = os.environ.get("HEROKU_RELEASE_CREATED_AT")
 app.debug=os.environ.get("DEBUG") == "DEBUG"
 
 _g_client_secret = os.environ.get("GOOGLE_CLIENT_SECRET")
