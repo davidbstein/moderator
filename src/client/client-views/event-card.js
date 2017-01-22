@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 export default class EventCard extends React.Component {
   render() {
     const e = this.props.event;
+    const clean_title = encodeURIComponent(e.title.replace(/[- ]/g,'_'));
     return <div className="event-card card">
       <div className="event-info-container">
         <div className="event-title">{this.props.event.title}</div>
@@ -21,7 +22,7 @@ export default class EventCard extends React.Component {
         <button
           onClick={
             ()=>{
-              window.location=`/e/${encodeURIComponent(e.title.replace('-','_'))}-${e.lookup_id}`;
+              window.location=`/e/${clean_title}-${e.lookup_id}`;
             }
           }
           className="event-card-button">
