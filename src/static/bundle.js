@@ -23147,6 +23147,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var e = this.props.event;
+	      var clean_title = encodeURIComponent(e.title.replace(/[- ]/g, '_'));
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'event-card card' },
@@ -23175,7 +23176,7 @@
 	            'button',
 	            {
 	              onClick: function onClick() {
-	                window.location = '/e/' + encodeURIComponent(e.title.replace('-', '_')) + '-' + e.lookup_id;
+	                window.location = '/e/' + clean_title + '-' + e.lookup_id;
 	              },
 	              className: 'event-card-button' },
 	            'View, vote, and comment on questions'
