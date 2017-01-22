@@ -1,12 +1,5 @@
 import actionTypes from "../actionTypes"
 
-const test_state = {
-  page: "event",
-  state: {
-    lookup_id: 1
-  }
-}
-
 const initial_state = {
   page: undefined,
   state: {}
@@ -39,8 +32,6 @@ export default function(state=initial_state, action) {
             state: {},
           }
       }
-      return state
-    case actionTypes.PLACEHOLDER:
       return state
     default:
       return state
