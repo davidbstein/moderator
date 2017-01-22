@@ -26,7 +26,7 @@ export default connect(
         <div className="org-event-list">
         {
           Object.values(this.props.state.event_lookup).sort(
-            (a, b) => a.id - b.id
+            (a, b) => b.id - a.id
           ).map(
             (e) => {
               console.log(e);
