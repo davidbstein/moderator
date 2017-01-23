@@ -26,7 +26,6 @@ class Question:
 
   @classmethod
   def get_all_for_event(cls, event, user):
-    print "FOOBAR", event, user
     assert event['domain'] == user['domain'], "how did you call this?"
     return {
       q['id']: {
