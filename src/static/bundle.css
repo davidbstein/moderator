@@ -52,6 +52,9 @@ table {
   100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@media (max-width: 600px) {
+  body {
+    width: 100vw; } }
 @-webkit-keyframes sk-rotateplane {
   0% {
     -webkit-transform: perspective(120px); }
@@ -69,6 +72,9 @@ table {
   100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@media (max-width: 600px) {
+  body {
+    width: 100vw; } }
 body {
   font-family: sans-serif;
   background: #c6ccd3;
@@ -210,6 +216,9 @@ button {
   100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@media (max-width: 600px) {
+  body {
+    width: 100vw; } }
 .question {
   margin: 16px;
   margin-top: 32px; }
@@ -344,6 +353,9 @@ button {
   100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@media (max-width: 600px) {
+  body {
+    width: 100vw; } }
 .event-question-list {
   margin: auto;
   max-width: 750px; }
@@ -380,6 +392,9 @@ button {
   100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@media (max-width: 600px) {
+  body {
+    width: 100vw; } }
 .new-event-link-container {
   max-width: 750px;
   margin: 64px auto;
