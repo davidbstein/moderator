@@ -1,5 +1,3 @@
-from raven.contrib.flask import Sentry
-sentry = Sentry(app)
 
 from flask import (
   Flask,
