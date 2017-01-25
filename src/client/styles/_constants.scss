@@ -58,3 +58,9 @@ $zidx-header: 100;
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
 }
+
+@media (max-width: 600px){
+  body {
+    width: 100vw;
+  }
+}
