@@ -1,5 +1,5 @@
-### TODO: look into
-### flask flask-login google-login
+from raven.contrib.flask import Sentry
+sentry = Sentry(app)
 
 from flask import (
   Flask,
