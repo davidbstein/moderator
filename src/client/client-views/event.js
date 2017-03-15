@@ -54,6 +54,7 @@ export default connect(
           <QuestionList
             questions={e.questions}
             vote={this.question_vote.bind(this)}
+            allow_downvotes={e.event.allow_downvotes}
           />
         </div>
       </div>

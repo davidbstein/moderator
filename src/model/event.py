@@ -41,7 +41,7 @@ class Event:
     return r2d(event)
 
   @classmethod
-  def create(cls, title, user_email, description=None, **__):
+  def create(cls, title, user_email, description=None, allow_downvotes=True, **__):
     title = title
     user = User.get(user_email)
     org = Org.get(user['domain'], user_email)
@@ -56,6 +56,7 @@ class Event:
       moderators=list(set(org['moderators'] + [user_email])),
       title=title,
       description=description or title,
+      allow_downvotes=allow_downvotes,
     )
     command = DB.events.insert(new_event).returning(*DB.events.columns)
     return r2d(DB.ex(command).fetchone())

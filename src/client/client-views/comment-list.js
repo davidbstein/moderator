@@ -59,6 +59,7 @@ export default connect(
             comment={comment}
             vote={this.comment_vote.bind(this, comment.id)}
             key={_k}
+            allow_downvotes={this.props.allow_downvotes}
           />
         });
         comment_count = comments.length;
