@@ -43,7 +43,7 @@ export default class QuestionList extends React.Component {
               question={question}
               key={_k}
               upvote={this.vote.bind(this, question.question.id, 1)}
-              downvote={this.vote.bind(this, question.question.id, -1)}
+              downvote={this.props.allow_downvotes ? this.vote.bind(this, question.question.id, -1) : null}
             />
           }
         )

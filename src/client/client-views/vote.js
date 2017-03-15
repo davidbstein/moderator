@@ -10,9 +10,11 @@ export default class Vote extends React.Component {
         <div className="upvote-arrow" />
       </div>
       <div className="vote-score"> {this.props.score} </div>
-      <div className="downvote" onClick={this.props.downvote}>
-        <div className="downvote-arrow" />
-      </div>
+      {this.props.downvote && 
+        <div className="downvote" onClick={this.props.downvote}>
+          <div className="downvote-arrow" />
+        </div>
+      }
     </div>
   }
 }
