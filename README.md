@@ -12,3 +12,16 @@ google moderator clone
   - set up sql
     - `heroku pg:psql --app appboy-moderator < src/model/model.sql`
   - set up production config vars
+
+# new event
+
+```
+heroku run bash --app appboy-moderator
+cd src/
+python -c "
+from model import Event
+EVENT =
+ME =
+event = Event.create(EVENT, ME)
+"
+```
