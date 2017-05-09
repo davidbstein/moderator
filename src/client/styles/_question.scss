@@ -8,6 +8,9 @@
   div {
     position: relative;
   }
+  .anonymous-comment-link {
+    padding-left: $comment-vote-width;
+  }
   .question-container {
     background: $item-background;
     border: $card-border;

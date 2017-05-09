@@ -32,7 +32,6 @@ class Comment:
 
   @classmethod
   def create(cls, question_id, user_email, comment, **__):
-    question = Question.get(question_id, user_email)
     command = DB.comments.insert(dict(
       q_id=question_id,
       owner_email=user_email,
@@ -40,14 +39,18 @@ class Comment:
       score=0,
     ))
     DB.ex(command)
-    user = User.get(user_email)
-    question = Question.get(question_id, user_email)
-    ## increment comment count
-    comments = Comment.get_all_for_question(question, override_auth=True)
-    return {
-      "question": question,
-      "comments": comments,
-    }
+    if user_email != None:
+      question = Question.get(question_id, user_email)
+      user = User.get(user_email)
+      question = Question.get(question_id, user_email, True)
+      ## increment comment count
+      comments = Comment.get_all_for_question(question, override_auth=True)
+      return {
+        "question": question,
+        "comments": comments,
+      }
+    else:
+      return comment
 
   @classmethod
   def _update_vote(cls, question_id, comment_id, user_email, score):
