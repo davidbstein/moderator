@@ -83,6 +83,15 @@
       background-color: rgba(168, 182, 199, 0.31);
       margin: 15px auto;
     }
+    .anonymous-comment-link {
+      margin: 8px;
+      padding-left: $comment-vote-width;
+      padding-bottom: 5px;
+      color: $item-detail-color;
+      a {
+        color: #88f;
+      }
+    }
     .comment {
       display: flex;
       margin-top: 8px;

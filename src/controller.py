@@ -185,6 +185,14 @@ def post_question_form(lookup_id, body=None, **__):
   question = Question.create(lookup_id, content)
   return render_template("question_posted.html", lookup_id=lookup_id, question=question)
 
+@app.route("/submit_anonymous_comment/<string:lookup_id>", methods=_POST)
+@web_helper(require_auth=False)
+def post_comment_form(lookup_id, body=None, **__):
+  content = body['content'][0]
+  question_id = lookup_id
+  comment = Comment.create(question_id, None, content)
+  return render_template("comment_posted.html", lookup_id=lookup_id, comment=comment)
+
 #######
 # local routes
 #######
@@ -234,6 +242,11 @@ def post_event(**kwargs):
 def post_comment(body=None, user=None):
   comment = Comment.create(body['question_id'], user['email'], body['content'])
   return comment
+
+@app.route("/post_comment/<string:lookup_id>", methods=_GET)
+@web_helper(require_auth=False)
+def comment_form(lookup_id, **__):
+  return render_template("post_comment.html", lookup_id=lookup_id)
 
 @app.route("/api/new_question_vote", methods=_POST)
 @web_helper(json_encode_resp=True)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Appboy Moderator </title>
+  <!-- <meta name="viewport" content="width=500, initial-scale=1"> -->
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link href="/static/bundle.css?_bust={{config.VERSION}}" rel="stylesheet"></link>
+  <script> window._DEV_MODE = true; </script>
+  <script> window._INFO = {{ info_json }}; </script>
+</head>
+<body>
+  <div class="question-input-wrapper">
+    <div class="question-input">
+      <div class="card">
+        <h1> Post a comment anonymously </h1>
+        <div class="question-input-form">
+          <form action="/submit_anonymous_comment/{{ lookup_id }}" method="post">
+          <div><textarea name="content"></textarea></div>
+          <button>SUBMIT</button>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <p>
+          This page is generated with a link unique to a
+          qustion. It makes no additional effort to track your
+          identify (feel free to use incognito mode, ect.)
+        </p><p>
+          Any comment you post will be added to the
+          question this link is associated with. You'll need to
+          log in to view, vote, and comment on questions that
+          have been posted.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
