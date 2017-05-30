@@ -25,3 +25,9 @@ ME =
 event = Event.create(EVENT, ME)
 "
 ```
+
+# get to the DB
+```
+import model
+model.__DB.ex("command")
+```
