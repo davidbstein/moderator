@@ -17,7 +17,7 @@ export default class Question extends React.Component {
         <div className="question-content">{q.content}</div>
       </div>
       <div className="question-comments">
-        <CommentList comments={comments} question_id={q.id} />
+        <CommentList comments={comments} question_id={q.id} allow_downvotes={this.props.downvote != null} />
       </div>
     </div>
   }

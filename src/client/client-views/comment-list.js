@@ -59,12 +59,15 @@ export default connect(
             comment={comment}
             vote={this.comment_vote.bind(this, comment.id)}
             key={_k}
+            allow_downvotes={this.props.allow_downvotes}
           />
         });
         comment_count = comments.length;
       }
       let input_div = <div className="comment-loader loader"></div>
+      let anonymous_link_div = <div></div>
       if (!this.state.question_pending)
+        anonymous_link_div = <div className="anonymous-comment-link"> Add an anonymous comment using <a href={`/post_comment/${this.props.question_id}`}>this link</a>.</div>
         input_div = <CommentInput
           submit_content={this.comment_create.bind(this)}
         />
@@ -74,6 +77,7 @@ export default connect(
           style={{maxHeight: (3+comment_count) * COMMENT_MAX_HEIGHT}}
         >
           {comment_divs}
+          {anonymous_link_div}
           {input_div}
         </div>
         <div className="slider-toggle" onClick={this.toggleSlider.bind(this)}>

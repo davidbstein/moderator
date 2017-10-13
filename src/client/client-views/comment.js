@@ -14,7 +14,7 @@ export default class Comment extends React.Component {
     return <div className="comment">
       <Vote
         upvote={this.upvote.bind(this)}
-        downvote={this.downvote.bind(this)}
+        downvote={this.props.allow_downvotes ? this.downvote.bind(this) : null}
         score={c.score}
       />
       <div className="comment-content">
