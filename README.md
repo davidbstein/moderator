@@ -20,7 +20,7 @@ source dev-build.sh
     - `git push -f heroku HEAD:master`
   - turn on sql
   - set up sql
-    - `heroku pg:psql --app appboy-moderator < src/model/model.sql`
+    - `heroku pg:psql --app <INSTANCE_ID> < src/model/model.sql`
   - set up production config vars
 
 # new event
@@ -28,7 +28,7 @@ source dev-build.sh
 TODO: an admin page
 
 ```
-heroku run bash --app appboy-moderator
+heroku run bash --app <INSTANCE_ID>
 cd src/
 python -c "
 from model import Event
