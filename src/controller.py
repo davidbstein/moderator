@@ -193,7 +193,7 @@ def post_question_form(lookup_id, body=None, **__):
 @app.route(_ORG_PREFIX, methods=_GET)
 @web_helper(require_auth=True)
 def show_org(org=None, **__):
-  assert org in ('_g_org_suffix', 'gmail.com'), "unknown org"
+  assert org in (_g_org_suffix, 'gmail.com'), "unknown org"
   return org
 
 @app.route(_EVENT_PREFIX, methods=_GET)
