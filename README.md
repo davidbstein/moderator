@@ -1,8 +1,18 @@
 # moderator
 google moderator clone
 
+# local setup
 
-# setup notes
+Using brew or the tool of your choice install python2.7, postgreSQL, npm, sass
+
+```
+virtualenv env --python=/usr/bin/python2.7
+source setup.sh
+source init.sh
+source dev-build.sh
+```
+
+# prod setup notes
 
   - set up a moderator server
   - turn on the log somewhere `heroku --tail`
@@ -14,6 +24,8 @@ google moderator clone
   - set up production config vars
 
 # new event
+
+TODO: an admin page
 
 ```
 heroku run bash --app appboy-moderator
