@@ -9,6 +9,7 @@ davidstein/
 .sass-cache/
 src/static/bundle*
 logfile
+package-lock.json
 
 # C extensions
 *.so

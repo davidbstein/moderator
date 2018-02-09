@@ -38,8 +38,7 @@ export default connect(
         <div className="new-event-link-container">
           <p>
           To create a new event, please contact your
-          team's <a href="mailto:david.stein@appboy.com">
-          moderator admin</a>.
+          team's moderator admin (probably stein).
           </p>
           <p> More information on moderator <a href="/about"> here </a></p>
         </div>

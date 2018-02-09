@@ -1,6 +1,6 @@
 {
   "name": "moderator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "google moderator clone",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/davidbstein/moderator.git"
   },
-  "author": "David Stein (david.stein@appboy.com)",
+  "author": "David Stein (davidbstein@gmail.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/davidbstein/moderator/issues"

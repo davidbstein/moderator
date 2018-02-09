@@ -124,15 +124,15 @@ button {
 .upvote-arrow {
   margin-top: 8px;
   border-bottom: 16px solid #cec;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
+  border-left: 8px solid rgba(0, 0, 0, 0);
+  border-right: 8px solid rgba(0, 0, 0, 0);
   width: 0px;
   height: 0px; }
 
 .downvote-arrow {
   border-top: 16px solid #fcc;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
+  border-left: 8px solid rgba(0, 0, 0, 0);
+  border-right: 8px solid rgba(0, 0, 0, 0);
   width: 0px;
   height: 0px; }
 
