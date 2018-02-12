@@ -43,7 +43,7 @@ event = Event.create(EVENT, ME)
 ### Hide old event
 ```
 heroku pg:psql --app <INSTANCE_ID>
-update events where id=<EVENT_ID> set visible=0
+update events where lookup_id=<EVENT_ID_FROM_URL> set visible=0
 ```
 
 # get to the DB
