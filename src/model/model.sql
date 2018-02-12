@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS events (
  lookup_id varchar(64),
  moderators JSON,
  title varchar(255),
- description JSON
+ description JSON,
+ visible INT DEFAULT 1
 );
 CREATE INDEX IF NOT EXISTS event_lookup_id on events (lookup_id);
 CREATE INDEX IF NOT EXISTS event_domain on events (domain);
