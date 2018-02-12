@@ -17,7 +17,7 @@ export default connect(
         <div className="page-header">
           <div className="page-header-container">
             <div className="org-title page-title">
-              <a href="/"> {o.title || o.domain} moderator </a>
+              <a href="/"> {o.title || o.domain} Moderator </a>
             </div>
             <div className="logout-button"><a href="/logout">logout</a></div>
           </div>
