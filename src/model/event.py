@@ -25,7 +25,8 @@ class Event:
   def get_all_for_domain(cls, domain, override_auth=False):
     assert override_auth
     query = DB.events.select(
-      (DB.events.columns.domain==domain)
+      (DB.events.columns.domain==domain) &
+      (DB.events.columns.visible==1)
     )
     return map(r2d, DB.ex(query))
 
