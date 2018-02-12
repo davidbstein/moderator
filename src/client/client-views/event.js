@@ -45,7 +45,7 @@ export default connect(
           </div>
         </div>
         <div className="underheader" />
-        <div classsName="unique-link-container">
+        <div className="unique-link-container">
           Add new questions using {' '}
           <a href={`/post_question/${e.event.lookup_id}`}>this link</a>.
           You do not need to be signed in to post a question.
