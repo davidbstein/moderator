@@ -58,7 +58,7 @@ export default connect(
         </div>
         <a className="new-question-card" href={`/post_question/${e.event.lookup_id}`}>
           Submit a new question
-        <a>
+        </a>
       </div>
     }
   }
