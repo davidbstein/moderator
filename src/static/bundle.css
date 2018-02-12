@@ -374,6 +374,11 @@ button {
   margin: 32px auto;
   text-align: center;
   font-size: 18px; }
+.event .new-question-card {
+  text-align: center;
+  font-size: 24px;
+  padding: 16px;
+  cursor: pointer; }
 
 @-webkit-keyframes sk-rotateplane {
   0% {
