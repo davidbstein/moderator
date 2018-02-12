@@ -141,7 +141,7 @@ def home(body, user, **__):
     })
 
 @app.route("/about", methods=_GET)
-@web_helper(require_auth=False)
+@web_helper(require_auth=True)
 def about(body, user, **__):
   return render_template("about.html", user_info=session)
 
