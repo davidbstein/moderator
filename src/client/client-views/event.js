@@ -36,7 +36,7 @@ export default connect(
           <div className="page-header-container">
             <div className="event-title page-title">
               <span className="org-title">
-                <a href="/"> {o.domain} moderator </a>
+                <a href="/"> {o.title || o.domain} moderator </a>
               </span>
             {" > "}
             {e.event.title}
