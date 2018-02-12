@@ -55,10 +55,10 @@ export default connect(
             questions={e.questions}
             vote={this.question_vote.bind(this)}
           />
+          <a className="card new-question-card" href={`/post_question/${e.event.lookup_id}`}>
+            Submit a new question
+          </a>
         </div>
-        <a className="new-question-card" href={`/post_question/${e.event.lookup_id}`}>
-          Submit a new question
-        </a>
       </div>
     }
   }
