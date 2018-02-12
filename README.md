@@ -23,10 +23,12 @@ source dev-build.sh
     - `heroku pg:psql --app <INSTANCE_ID> < src/model/model.sql`
   - set up production config vars
 
-# new event
+# administration
 
-TODO: an admin page
+__TODO: an admin page__
 
+
+### New Event
 ```
 heroku run bash --app <INSTANCE_ID>
 cd src/
@@ -36,6 +38,12 @@ EVENT =
 ME =
 event = Event.create(EVENT, ME)
 "
+```
+
+### Hide old event
+```
+heroku pg:psql --app <INSTANCE_ID>
+update events where id=<EVENT_ID> set visible=0
 ```
 
 # get to the DB
