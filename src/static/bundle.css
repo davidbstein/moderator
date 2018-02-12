@@ -358,7 +358,8 @@ button {
     width: 100vw; } }
 .event-question-list {
   margin: auto;
-  max-width: 750px; }
+  max-width: 750px;
+  margin-bottom: 64px; }
 
 .event-loader {
   width: 64px;
