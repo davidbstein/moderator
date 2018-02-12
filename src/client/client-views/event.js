@@ -45,7 +45,7 @@ export default connect(
           </div>
         </div>
         <div className="underheader" />
-        <div className="unique-link-container">
+        <div classsName="unique-link-container">
           Add new questions using {' '}
           <a href={`/post_question/${e.event.lookup_id}`}>this link</a>.
           You do not need to be signed in to post a question.
@@ -56,6 +56,9 @@ export default connect(
             vote={this.question_vote.bind(this)}
           />
         </div>
+        <a className="new-question-card" href={`/post_question/${e.event.lookup_id}`}>
+          Submit a new question
+        <a>
       </div>
     }
   }

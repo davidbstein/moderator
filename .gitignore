@@ -10,6 +10,7 @@ davidstein/
 src/static/bundle*
 logfile
 package-lock.json
+*~
 
 # C extensions
 *.so
