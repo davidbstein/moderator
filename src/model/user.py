@@ -12,14 +12,15 @@ class User:
     assert "@" in user_email, "%s is not a valid email" % (user_email, )
     get_query = DB.users.select(DB.users.columns.u_email == user_email)
     user = DB.ex(get_query).fetchone()
-    user_domain = _DOMAIN_MAPS.get(user.domain, user.domain)
+    user_domain = user.domain if user else user_email.split("@")[-1]
+    user_domain = _DOMAIN_MAPS.get(user_domain, user_domain)
     if user:
       to_ret = r2d(user)
       to_ret['domain'] = user_domain
       return to_ret
     insert_command = DB.users.insert({
       "u_email": user_email,
-      "domain": user_email.split("@")[-1],
+      "domain": user_domain,
       "info": {},
     })
     DB.ex(insert_command)
