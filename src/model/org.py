@@ -6,11 +6,15 @@ from model.helpers import (
 
 from user import User
 
+import os, json
+_DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS"))
+
 class Org:
   @classmethod
   def get(cls, domain, user_email, **__):
     user = User.get(user_email)
-    if user['domain'] != domain:
+    user_domain = _DOMAIN_MAPS.get(user['domain'], user['domain'])
+    if user_domain != domain:
       raise PermissionError("%s does not have a %s email" % (user_email, domain))
     org = DB.ex(
       DB.orgs.select(DB.orgs.columns.domain == domain)
