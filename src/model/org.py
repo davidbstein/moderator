@@ -7,7 +7,7 @@ from model.helpers import (
 from user import User
 
 import os, json
-_DOMAIN_MAPS = os.environ.get("DOMAIN_MAPS")
+_DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS"))
 
 class Org:
   @classmethod

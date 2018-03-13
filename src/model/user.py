@@ -4,7 +4,7 @@ from model.helpers import (
 )
 
 import json, os
-_DOMAIN_MAPS = json.dumps(os.environ.get("DOMAIN_MAPS", "{}"))
+_DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS", "{}"))
 
 class User:
   @classmethod
