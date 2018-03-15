@@ -38,7 +38,9 @@ CREATE TABLE IF NOT EXISTS questions (
  flag_note JSON,
  content JSON,
  score int,
- comment_count int
+ comment_count int,
+ upvotes int,
+ downvotes int
 );
 CREATE INDEX IF NOT EXISTS questions_event_idx ON questions (e_id, id);
 
