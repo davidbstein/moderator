@@ -113,11 +113,23 @@ class Question:
     assert question, "no question found that user has permission to access"
     vote = Question._update_vote(question_id, user_email, score)
     new_score = question['score'] + vote['delta']
+    if vote['delta'] == -2:
+      new_upvotes = question["upvotes"] - 1
+      new_downvotes = question["downvotes"] + 1
+    elif vote['delta'] == -1:
+      new_downvotes = question["downvotes"] + 1
+    elif vote['delta'] == 1:
+      new_upvotes = question["upvotes"] + 1
+    elif vote['delta'] == 2:
+      new_upvotes = question["upvotes"] + 1
+      new_downvotes = question["downvotes"] - 1
     question_command = DB.questions.update(
       ).where(
         DB.questions.columns.id == question_id
       ).values(
-        score=new_score
+        score=new_score,
+        upvotes=new_upvotes,
+        downvotes=new_downvotes
       ).returning(*DB.questions.columns)
     return r2d(
       DB.ex(
