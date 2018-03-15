@@ -48,6 +48,8 @@ class Question:
       flag_note=[],
       content=content,
       score=0,
+      upvotes=0,
+      downvotes=0,
       comment_count=0,
     )).returning(*DB.questions.columns)
     return r2d(DB.ex(command).fetchone())
