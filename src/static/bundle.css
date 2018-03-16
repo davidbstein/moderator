@@ -238,7 +238,8 @@ button {
       margin-right: 16px;
       height: 72px; }
       .question .question-container .vote .upvote, .question .question-container .vote .downvote {
-        height: 20px; }
+        height: 20px;
+        margin-left: calc(50% - 36px); }
   .question .question-comments {
     z-index: 1;
     background: #fff;
