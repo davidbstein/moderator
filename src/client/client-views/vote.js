@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 
 // TODO: the syling here is SO BAD. like, so bad. really bad.
 
+
 export default class Vote extends React.Component {
+  // upvotes and downvotes are also props now
   render() {
     return <div className="vote">
       <div className="upvote" onClick={this.props.upvote}>
