@@ -24,7 +24,7 @@
       height: $question-vote-width;
       .upvote, .downvote {
         height: #{(($question-vote-width / 2) - 16)};
-        margin-left: calc(50% - #{$question-vote-width / 2});
+        margin-left: calc(50% - 8px);
       }
     }
   }
