@@ -13,6 +13,8 @@ export default class Question extends React.Component {
           upvote={this.props.upvote}
           downvote={this.props.downvote}
           score={q.score}
+          upvotes={q.upvotes}
+          downvotes={q.downvotes}
         />
         <div className="question-content">{q.content}</div>
       </div>
