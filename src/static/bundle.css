@@ -144,7 +144,8 @@ button {
   text-align: center;
   font-family: monospace;
   line-height: 16px;
-  cursor: default; }
+  cursor: default;
+  white-space: nowrap; }
 
 .card {
   background: #fff;
