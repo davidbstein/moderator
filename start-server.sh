@@ -2,5 +2,5 @@
 # if you have gunicorn installed, use gunicorn controller:app
 
 cd src
-python controller.py
+python2.7 controller.py
 cd ..

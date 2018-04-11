@@ -4,10 +4,12 @@ import os
 class PermissionError(Exception):
   pass
 
+
 def r2d(row):
   if row is None:
     return None
   return {k: row[k] for k in row.iterkeys()}
+
 
 class _DBWrapper:
   def __init__(self, **__):
