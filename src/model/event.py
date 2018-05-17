@@ -5,10 +5,13 @@ from model.helpers import (
   PermissionError,
 )
 
-from user import User
-from org import Org
+from model.user import User
+from model.org import Org
 
 class Event:
+  def __init__(self):
+    raise Exception("This class is a db wrapper and should not be instantiated.")
+
   @classmethod
   def get(cls, event_id, user_email, **__):
     user = User.get(user_email)
@@ -46,10 +49,7 @@ class Event:
     title = title
     user = User.get(user_email)
     org = Org.get(user['domain'], user_email)
-    unique_hash = "".join(map(
-      lambda b: str(hex(ord(b)))[2:],
-      Random.new().read(16)
-    ))
+    unique_hash = "".join(str(hex(ord(b)))[2:] for b in Random.new().read(16))
     new_event = dict(
       owner_email=user_email,
       domain=user['domain'],

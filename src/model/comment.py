@@ -1,14 +1,18 @@
 from model.helpers import (
   r2d,
   DB,
+  PermissionError,
 )
-from question import Question
-from user import User
+from model.question import Question
+from model.user import User
 
 class Comment:
+  def __init__(self):
+    raise Exception("This class is a db wrapper and should not be instantiated.")
+
   @classmethod
   def get(cls, question_id, comment_id, user_email, **__):
-    question = Question.get(question_id, user_email)
+    Question.get(question_id, user_email) # forces a permission check
     comment_command = DB.comments.select(
       (DB.comments.columns.id==comment_id) &
       (DB.comments.columns.q_id == question_id)
@@ -40,7 +44,7 @@ class Comment:
       score=0,
     ))
     DB.ex(command)
-    user = User.get(user_email)
+    User.get(user_email) # forces a user check / creation
     question = Question.get(question_id, user_email)
     ## increment comment count
     comments = Comment.get_all_for_question(question, override_auth=True)
@@ -100,7 +104,7 @@ class Comment:
 
   @classmethod
   def flag(cls, question_id, comment_id, user_email, comment, **__):
-    comment = Comments.get(question_id, comment_id, user_email)
+    comment = Comment.get(question_id, comment_id, user_email)
     comment_command = DB.comments.update(
       ).where(
         (DB.comments.columns.q_id == question_id) &
@@ -116,5 +120,7 @@ class Comment:
     )
 
   @classmethod
-  def unflag(cls, question_id, user_email, comment, **__):
-    raise PermissionError("you gotta do this manually in the DB")
+  def unflag(cls, question_id, user_email, comment_id, **__):
+    raise PermissionError("you gotta do this manually in the DB. {}, {}, {}".format(
+      question_id, user_email, comment_id
+    ))

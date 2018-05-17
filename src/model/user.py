@@ -7,6 +7,9 @@ import json, os
 _DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS", "{}"))
 
 class User:
+  def __init__(self):
+    raise Exception("This class is a db wrapper and should not be instantiated.")
+
   @classmethod
   def get(cls, user_email, **__):
     assert "@" in user_email, "%s is not a valid email" % (user_email, )

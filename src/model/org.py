@@ -1,15 +1,21 @@
+import os
+import json
+
 from model.helpers import (
   r2d,
   DB,
   PermissionError,
 )
 
-from user import User
+from model.user import User
 
-import os, json
 _DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS"))
 
+
 class Org:
+  def __init__(self):
+    raise Exception("This class is a db wrapper and should not be instantiated.")
+
   @classmethod
   def get(cls, domain, user_email, **__):
     user = User.get(user_email)

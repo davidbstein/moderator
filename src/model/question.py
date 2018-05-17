@@ -4,10 +4,12 @@ from model.helpers import (
   PermissionError,
 )
 
-from user import User
-from event import Event
+from model.event import Event
 
 class Question:
+  def __init__(self):
+    raise Exception("This class is a db wrapper and should not be instantiated.")
+
   @classmethod
   def _flag_filter(cls, question):
     question = r2d(question) or {}
@@ -16,7 +18,7 @@ class Question:
     return question
 
   @classmethod
-  def get(cls, question_id, user_email, override_auth=False, **__):
+  def get(cls, question_id, user_email, **__):
     question = r2d(DB.ex(DB.questions.select(
       DB.questions.columns.id == question_id
     )).fetchone())
@@ -140,24 +142,3 @@ class Question:
         question_command
       ).fetchone()
     )
-
-  @classmethod
-  def flag(cls, question_id, user_email, comment, **__):
-    question = Comments.get(question_id, user_email)
-    question_command = DB.questions.update(
-      ).where(
-        (DB.questions.columns.id == question_id)
-      ).values(
-        flagged=True,
-        flag_note=[comment]
-      ).returning(*DB.questions.columns)
-    return r2d(
-      DB.ex(
-        question_command
-      ).fetchone()
-    )
-
-  @classmethod
-  def unflag(cls, question_id, user_email, comment, **__):
-    raise PermissionError("you gotta do this manually in the DB")
-
