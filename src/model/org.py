@@ -9,8 +9,7 @@ from model.helpers import (
 
 from model.user import User
 
-_DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS"))
-
+_DOMAIN_MAPS = json.loads(os.environ.get("DOMAIN_MAPS", "{}"))
 
 class Org:
   def __init__(self):

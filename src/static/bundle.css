@@ -339,6 +339,10 @@ button {
       height: 7em;
       width: calc(100% - (2 * 8px));
       border: 1px solid #ccc; }
+    .question-submitted .question-input-form .question-field-title, .question-input .question-input-form .question-field-title {
+      margin: 8px 0;
+      font-size: 20px;
+      width: 100%; }
 
 @-webkit-keyframes sk-rotateplane {
   0% {

@@ -140,6 +140,16 @@ def home(body, user, **__):
       'events': list_events_for_user(user['email'])
     })
 
+@app.route("/new_event", methods=_GET)
+@web_helper(require_auth=True)
+def new_event(body, user, **__):
+  org = get_org_info_by_user(user['email'])
+  if (org):
+    return render_template("new_event.html", user_info=session, info={
+      'page': "org",
+      'org_info': org
+    })
+
 @app.route("/about", methods=_GET)
 @web_helper(require_auth=True)
 def about(body, user, **__):
@@ -185,6 +195,14 @@ def post_question_form(lookup_id, body=None, **__):
   content = body['content'][0]
   question = Question.create(lookup_id, content)
   return render_template("question_posted.html", lookup_id=lookup_id, question=question)
+
+@app.route("/post_new_event", methods=_POST)
+@web_helper(require_auth=True)
+def post_new_event(body, user, **__):
+  event_name = body['event_name'][0]
+  user_email = user['email']
+  Event.create(event_name, user_email)
+  return redirect("/")
 
 #######
 # local routes

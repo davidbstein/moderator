@@ -37,8 +37,9 @@ export default connect(
         </div>
         <div className="new-event-link-container">
           <p>
-          To create a new event, please contact your
-          team's moderator admin (probably stein).
+          <a href="/new_event">
+            Click here to create a new event.
+          </a>
           </p>
           <p> More information on moderator <a href="/about"> here </a></p>
         </div>
