@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Moderator </title>
+  <!-- <meta name="viewport" content="width=500, initial-scale=1"> -->
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  <link href="/static/bundle.css?_bust={{config.VERSION}}" rel="stylesheet"></link>
+  <script> window._DEV_MODE = true; </script>
+  <script> window._INFO = {{ info_json }}; </script>
+</head>
+<body>
+  <div class="question-input-wrapper">
+    <div class="question-input">
+      <div class="card">
+        <div class="question-input-form">
+          <form action="/post_new_event" method="post">
+          <div>
+            <input class="question-field-title" type="text" name="event_name" placeholder="New Event Name" />
+          </div>
+          <button>Create Event</button>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <p>
+          This will create a new event. Tools for renaming and removing
+          events havn't been built yet.
+          <a href="https://github.com/davidbstein/moderator">
+            Pull requests welcome
+          </a>!
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
