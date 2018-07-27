@@ -12,6 +12,8 @@ source init.sh
 source dev-build.sh
 ```
 
+TODO: migrate to python3
+
 # prod setup notes
 
   - set up a moderator server
