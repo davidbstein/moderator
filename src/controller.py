@@ -1,7 +1,6 @@
-
+from flask_sslify import SSLify
 from flask import (
   Flask,
-  SSLify,
   abort,
   redirect,
   render_template,
