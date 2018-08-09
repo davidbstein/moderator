@@ -12,6 +12,8 @@ source init.sh
 source dev-build.sh
 ```
 
+TODO: migrate to python3
+
 # prod setup notes
 
   - set up a moderator server
@@ -25,20 +27,7 @@ source dev-build.sh
 
 # administration
 
-__TODO: an admin page__
-
-
-### New Event
-```
-heroku run bash --app <INSTANCE_ID>
-cd src/
-python -c "
-from model import Event
-EVENT =
-ME =
-event = Event.create(EVENT, ME)
-"
-```
+__TODO: an admin page__ (edit: this is done but pretty rough around the edges)
 
 ### Hide old event
 ```

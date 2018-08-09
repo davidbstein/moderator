@@ -1,6 +1,7 @@
 
 from flask import (
   Flask,
+  SSLify,
   abort,
   redirect,
   render_template,
@@ -32,6 +33,7 @@ import traceback
 import urlparse
 
 app = Flask(__name__)
+sslify = SSLify(app)
 app.config["SESSION_TYPE"] = os.environ.get("SESSION_TYPE")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["VERSION"] = os.environ.get("HEROKU_RELEASE_CREATED_AT")
