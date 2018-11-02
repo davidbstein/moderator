@@ -85,7 +85,7 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
         kwargs['body'] = request.args
       try:
         to_return = fn(**kwargs)
-      except AssertionError, e:
+      except AssertionError as e:
         print(e.message)
         abort(403, e.message)
 
