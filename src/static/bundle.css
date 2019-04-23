@@ -325,6 +325,7 @@ button {
   .question-submitted h1, .question-input h1 {
     font-size: 24px; }
   .question-submitted p, .question-input p {
+    white-space: pre-wrap;
     line-height: 24px;
     margin: 16px 16px; }
   .question-submitted a, .question-input a {
