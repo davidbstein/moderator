@@ -66,7 +66,7 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
   """
   def outer(fn):
     def inner(*_, **kwargs):
-      print session.get("user_info", {}).get("email"), "called: ", fn.__name__, kwargs, session.get("authed")
+      print(session.get("user_info", {}).get("email"), "called: ", fn.__name__, kwargs, session.get("authed"))
       parsed_url = urlparse.urlparse(request.url)
       if require_auth and not session.get('authed', False):
         session['path'] = request.path
@@ -85,8 +85,8 @@ def web_helper(require_auth=True, foo=1, json_encode_resp=False):
         kwargs['body'] = request.args
       try:
         to_return = fn(**kwargs)
-      except AssertionError, e:
-        print e.message
+      except AssertionError as e:
+        print(e.message)
         abort(403, e.message)
 
       if json_encode_resp:
@@ -114,7 +114,7 @@ _GET = ("GET", "POST")
 
 @app.errorhandler(403)
 def page_not_found(e):
-  print e
+  print(e)
   return render_template('403.html', message=e.description), 404
 
 @app.errorhandler(404)

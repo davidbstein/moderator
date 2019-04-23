@@ -1,4 +1,4 @@
-from Crypto import Random
+import secure
 from model.helpers import (
   r2d,
   DB,
@@ -49,7 +49,7 @@ class Event:
     title = title
     user = User.get(user_email)
     org = Org.get(user['domain'], user_email)
-    unique_hash = "".join(str(hex(ord(b)))[2:] for b in Random.new().read(16))
+    unique_hash = "".join(str(hex(ord(b)))[2:] for b in secure.token_bytes(16))
     new_event = dict(
       owner_email=user_email,
       domain=user['domain'],
