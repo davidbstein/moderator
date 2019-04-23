@@ -194,6 +194,9 @@ def question_form(lookup_id, **__):
 @web_helper(require_auth=False)
 def post_question_form(lookup_id, body=None, **__):
   content = body['content'][0]
+  name = body.get('name')
+  if name:
+    content += "\n\n" + name
   question = Question.create(lookup_id, content)
   return render_template("question_posted.html", lookup_id=lookup_id, question=question)
 
