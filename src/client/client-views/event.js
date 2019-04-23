@@ -11,6 +11,7 @@ export default connect(
     constructor(props) {
       super(props);
       props.API.get_event(props.lookup_id);
+      window.setInterval(props.API.get_event, 5000, props.lookup_id)
     }
     reload_question(question_id){
       this.props.API.get_question(question_id,
