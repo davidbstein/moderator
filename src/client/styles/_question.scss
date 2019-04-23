@@ -135,6 +135,12 @@
   }
   .question-input-form {
     margin: 32px;
+    input {
+      width: calc(100% - (2 * 8px));
+      border: 1px solid #ccc;
+      margin: 8px 0;
+      padding: 4px;
+    }
     textarea{
       font-size: 14px;
       height: 7em;
