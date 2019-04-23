@@ -20,3 +20,4 @@ rsa
 six
 SQLAlchemy
 Werkzeug
+python2-secrets
