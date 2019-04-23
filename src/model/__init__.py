@@ -1,9 +1,9 @@
-from comment import Comment
-from event import Event
-from org import Org
-from question import Question
-from user import User
-from helpers import DB as __DB
+from .comment import Comment
+from .event import Event
+from .org import Org
+from .question import Question
+from .user import User
+from .helpers import DB as __DB
 
 def get_org_info_by_user(user_email):
   user = User.get(user_email)
