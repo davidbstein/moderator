@@ -334,6 +334,11 @@ button {
   .question-submitted .question-input-form, .question-input .question-input-form {
     margin: 32px;
     margin: 8px; }
+    .question-submitted .question-input-form input, .question-input .question-input-form input {
+      width: calc(100% - (2 * 8px));
+      border: 1px solid #ccc;
+      margin: 8px 0;
+      padding: 4px; }
     .question-submitted .question-input-form textarea, .question-input .question-input-form textarea {
       font-size: 14px;
       height: 7em;
