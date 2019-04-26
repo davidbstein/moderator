@@ -28,6 +28,20 @@ function init_state(mutable_state, action){
   }
 }
 
+const merge_questions = (new_questions, original_questions) => {
+  const merged_questions = {...original_questions}
+  for (var question_id in new_questions){
+    if (!merged_questions[question_id]){
+      merged_questions[question_id] = new_questions[question_id];
+    } else {
+      merged_questions[question_id].score = new_questions[question_id].score;
+      merged_questions[question_id].upvotes = new_questions[question_id].upvotes;
+      merged_questions[question_id].downvotes = new_questions[question_id].downvotes;
+    }
+  }
+  return merged_questions;
+}
+
 export default function(state=initial_state, action) {
   const next_state = {...state};
   let event, event_lookup_id;
@@ -44,10 +58,16 @@ export default function(state=initial_state, action) {
       return next_state;
     case actionTypes.EVENT.RECIEVE:
       event = action.data.event;
-      next_state.event_lookup[event.lookup_id] = action.data;
+      next_state.event_lookup[event.lookup_id] = {
+        event: event,
+        questions: merge_questions(
+            action.data.questions,
+            next_state.event_lookup[event.lookup_id].questions
+          ),
+      };
       next_state.questions = {
-        ...next_state.questions,
         ...next_state.event_lookup[event.lookup_id].questions,
+        ...next_state.questions,
       }
       next_state.e_id2lookup[event.id] = event.lookup_id
       return next_state;

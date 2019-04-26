@@ -1,0 +1,34 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+blinker = "*"
+click = "*"
+"contextlib2" = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-SSLify = "*"
+gunicorn = "*"
+"httplib2" = "*"
+itsdangerous = "*"
+MarkupSafe = "*"
+"oauth2client" = "*"
+oauthlib = "*"
+"psycopg2" = "*"
+"pyasn1" = "*"
+"pyasn1-modules" = "*"
+raven = "*"
+requests = "*"
+requests-oauthlib = "*"
+rsa = "*"
+six = "*"
+SQLAlchemy = "*"
+Werkzeug = "*"
+"python2-secrets" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
