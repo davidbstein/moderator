@@ -226,6 +226,7 @@ def show_event(lookup_id=None, user=None, **kwargs):
     'lookup_id': lookup_id,
     'page': 'event',
     'org_info': org,
+    'config': app.config,
   })
 
 @app.route(_EVENT_PREFIX + "/<question_id>", methods=_GET)
